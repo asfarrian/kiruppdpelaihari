@@ -14,19 +14,25 @@
 			<div class="col-md-6">
 				<div class="panel panel-primary">
 					<div class="panel-body">
-						<form action="<?php echo base_url("anak/pencarian/")?>" method="get" class="mt-3">
+						<form action="<?= site_url("Kir/index") ?>" method="get" class="mt-3">
 							<div class="form-group">
 								<label for="nama">Nama Ruangan</label>
 								<select name="ruangan" required class="form-control">
 									<option value="">Pilih Ruangan</option>
-									<?php
-										foreach($ruangan as $row){
-											echo "<option value='$row->id_ruangan'>$row->nama_ruangan</option>";
-										}
-										?>
-								</select>
+									<?php foreach($ruangan as $row) { ?>
+                                        <option value="<?= $row->id_ruangan ?>"
+                                                <?php
+                                                    if(isset($selected_ruangan)) {
+                                                        if($selected_ruangan == $row->id_ruangan) {
+                                                            echo "selected";
+                                                        }
+                                                    }
+                                                ?>>
+                                                <?= $row->nama_ruangan ?></option>
+									<?php } ?>
+ >								</select>
 							</div>
-                          <input type="submit" class="btn btn-primary" value="Cetak"></div>
+                          <input type="submit" class="btn btn-primary" value="Cari"></div>
                         </form>
 						</div>
 					</div>
