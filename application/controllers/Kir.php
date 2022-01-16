@@ -14,7 +14,7 @@
 				$data['kir'] = $this->kir_model->cari($ruangan);
 				$data['selected_ruangan'] = $ruangan;
 			} else {
-				$data['kir']=$this->kir_model->get_lihat_kir();
+				$data['kir']=$this->kir_model;
 			}
 
 			$data['ruangan'] = $this->ruangan_model->get_data();

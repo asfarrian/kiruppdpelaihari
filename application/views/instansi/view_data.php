@@ -11,6 +11,32 @@
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
      <div class="card-header py-3">
+         <h6 class="m-0 font-weight-bold text-primary">Pilih Pemerintahan</h6>
+     </div>
+     <div class="card-body">
+     <div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-body">
+						<form action="<?= site_url("Kir/index") ?>" method="get" class="mt-3">
+							<div class="form-group">
+								<label for="nama">Jenis Pemerintahan</label>
+								<select name="jenispemerintahan" required class="form-control">
+									<option value="">Pilih Pemerintahan</option>
+                                    <option value="Provinsi">Provinsi</option>
+                                    <option value="Kabupaten">Kabupaten</option>
+                                    <option value="Kota">Kota</option>
+ >								</select>
+							</div>
+                          <input type="submit" class="btn btn-primary" value="Cari"></div>
+                        </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+ <div class="card shadow mb-4">
+     <div class="card-header py-3">
          <h6 class="m-0 font-weight-bold text-primary">Table</h6>
      </div>
      <div class="card-body">
@@ -20,6 +46,7 @@
                      <tr>
                          <th>No</th>
                          <th>Nama Instansi</th>
+                         <th>Kabupaten/Kota</th>
                          <th>Aksi</th>
                      </tr>
                  </thead>
@@ -30,6 +57,7 @@
 					echo "<tr>
                         <td>$no</td>
                         <td>$row->nama_instansi</td>
+                        <td>$row->kabupaten_kota</td>
                         <td><div class='btn-group'>
                         <a href=".base_url('ruangan/ubah/'.$row->id_instansi)." class='btn btn-warning'>&nbsp; Edit &nbsp;</a> &nbsp;
                         <a href=".base_url('ruangan/hapus/'.$row->id_instansi)." 
