@@ -6,8 +6,17 @@
 			$this->load->model('instansi_model');
 		}
 
-		public function index(){//localhost/simon_pkl/dashboard
-			$data['instansi']=$this->instansi_model->get_data();
+		public function index()
+		{
+			$kabupaten_kota = $this->input->get('kabupaten_kota', TRUE);
+
+			if ($kabupaten_kota) {
+				$data['instansi'] = $this->instansi_model->cari($kabupaten_kota);
+				$data['selected_kabupaten_kota'] = $kabupaten_kota;
+			} else {
+				$data['instansi']=$this->instansi_model->get_data();
+			}
+
 			$this->load->view('template/sidebar');
 			$this->load->view('template/header');
 			$this->load->view('instansi/view_data', $data);

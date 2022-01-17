@@ -14,28 +14,36 @@
 			<div class="col-md-6">
 				<div class="panel panel-primary">
 					<div class="panel-body">
-						<form action="<?= site_url("Kir/index") ?>" method="get" class="mt-3">
+						<form action="<?= site_url("Kir") ?>" method="get" class="mt-3">
 							<div class="form-group">
 								<label for="nama">Nama Ruangan</label>
-								<select name="ruangan" required class="form-control">
+								<select name="id_ruangan" required class="form-control">
 									<option value="">Pilih Ruangan</option>
 									<?php foreach($ruangan as $row) { ?>
-                                        <option value="<?= $row->id_ruangan ?>"
-                                                <?php
-                                                    if(isset($selected_ruangan)) {
-                                                        if($selected_ruangan == $row->id_ruangan) {
-                                                            echo "selected";
-                                                        }
+                                        <option
+                                            value="<?= $row->id_ruangan ?>"
+                                            <?php
+                                                if(isset($selected_id_ruangan)) {
+                                                    if($selected_id_ruangan == $row->id_ruangan) {
+                                                        echo "selected";
                                                     }
-                                                ?>>
-                                                <?= $row->nama_ruangan ?></option>
+                                                }
+                                            ?>>
+                                            <?= $row->nama_ruangan ?></option>
 									<?php } ?>
- >								</select>
+								</select>
 							</div>
-                          <input type="submit" class="btn btn-primary" value="Cari"></div>
+                        <input type="submit" class="btn btn-primary" value="Cari">
                         </form>
-						</div>
-					</div>
+                        <?php if(isset($selected_id_ruangan)) { ?>
+                            <a
+                                href="<?= site_url("Kir/laporan_pdf/". $selected_id_ruangan) ?>"
+                                target="_blank"
+                                class="btn btn-primary mt-3">Cetak PDF</a>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
 				</div>
 			</div>
 		</div>
@@ -65,7 +73,7 @@
                          <th>Aksi</th>
                      </tr>
                  </thead>
-                 <tbody> 
+                 <tbody>
                  <?php
 					$no = 1;
 					foreach($kir as $data):
@@ -86,9 +94,13 @@
                         <td><?php echo $data['keterangan'] ?></td>
                         <td><?php echo $data['nama_ruangan'] ?></td>
                         <td><div class='btn-group'>
-                        <a href="<?php echo base_url('dashboard/ubah/'.$data['id_barang']) ?>" class='btn btn-warning'>Ubah</a> &nbsp;
-                        <a href=".base_url('tempat/hapus/'.$row->id_barang)." 
-						class='btn btn-danger' onclick='return confirm(\"Ingin menghapus data ini?\");'>Keluar</a>
+                            <a
+                                href="<?php echo base_url('dashboard/ubah/'.$data['id_barang']) ?>"
+                                class='btn btn-warning'>Ubah</a> &nbsp;
+                            <a
+                                href=".base_url('tempat/hapus/'.$row->id_barang)."
+                                class='btn btn-danger'
+                                onclick='return confirm("Ingin menghapus data ini?")'>Keluar</a>
                         </td>
                         </tr>
                <?php
@@ -98,7 +110,7 @@
              </table>
          </div>
      </div>
- </div>	
+ </div>
 
 
 

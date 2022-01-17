@@ -18,14 +18,19 @@
 			<div class="col-md-6">
 				<div class="panel panel-primary">
 					<div class="panel-body">
-						<form action="<?= site_url("Kir/index") ?>" method="get" class="mt-3">
+						<form action="<?= site_url("Instansi") ?>" method="get" class="mt-3">
 							<div class="form-group">
 								<label for="nama">Jenis Pemerintahan</label>
-								<select name="jenispemerintahan" required class="form-control">
+								<select name="kabupaten_kota" required class="form-control">
 									<option value="">Pilih Pemerintahan</option>
-                                    <option value="Provinsi">Provinsi</option>
-                                    <option value="Kabupaten">Kabupaten</option>
-                                    <option value="Kota">Kota</option>
+                                    <option
+                                        value="Provinsi"
+                                        <?php if (isset($selected_kabupaten_kota) && $selected_kabupaten_kota == "Provinsi") {echo 'selected';} ?>>Provinsi</option>
+                                    <option
+                                        value="Kabupaten"
+                                        <?php if (isset($selected_kabupaten_kota) && $selected_kabupaten_kota == "Kabupaten") {echo 'selected';} ?>>Kabupaten</option>
+                                    <option
+                                        value="Kota" <?php if (isset($selected_kabupaten_kota) && $selected_kabupaten_kota == "Kota") {echo 'selected';} ?>>Kota</option>
  >								</select>
 							</div>
                           <input type="submit" class="btn btn-primary" value="Cari"></div>
@@ -51,22 +56,27 @@
                      </tr>
                  </thead>
                  <tbody>
-                 <?php
+                <?php
 					$no = 1;
-					foreach($instansi as $row){
-					echo "<tr>
-                        <td>$no</td>
-                        <td>$row->nama_instansi</td>
-                        <td>$row->kabupaten_kota</td>
-                        <td><div class='btn-group'>
-                        <a href=".base_url('ruangan/ubah/'.$row->id_instansi)." class='btn btn-warning'>&nbsp; Edit &nbsp;</a> &nbsp;
-                        <a href=".base_url('ruangan/hapus/'.$row->id_instansi)." 
-						class='btn btn-danger' onclick='return confirm(\"Ingin menghapus data ini?\");'>Hapus</a>
+					foreach($instansi as $row) {
+                ?>
+                    <tr>
+                        <td><?= $no++ ?></td>
+                        <td><?= $row->nama_instansi ?></td>
+                        <td><?= $row->kabupaten_kota ?></td>
+                        <td>
+                            <div class='btn-group'>
+                                <a
+                                    href="<?= site_url('ruangan/ubah/'.$row->id_instansi) ?>"
+                                    class="btn btn-warning">&nbsp; Edit &nbsp;</a> &nbsp;
+                                <a
+                                    href="<?= site_url('ruangan/hapus/'.$row->id_instansi) ?>"
+						            class='btn btn-danger'
+                                    onclick="return confirm('Ingin menghapus data ini?')">Hapus</a>
+                            </div>
                         </td>
-                        </tr>";
-                            $no++;
-						}
-						 ?>
+                    </tr>
+                <?php } ?>
                  </tbody>
              </table>
          </div>

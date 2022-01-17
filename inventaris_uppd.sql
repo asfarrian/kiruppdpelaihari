@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2022 at 02:16 PM
+-- Generation Time: Jan 16, 2022 at 02:22 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -30,16 +30,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_instansi` (
   `id_instansi` int(3) NOT NULL,
-  `nama_instansi` varchar(100) DEFAULT NULL
+  `nama_instansi` varchar(100) DEFAULT NULL,
+  `kabupaten_kota` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_instansi`
 --
 
-INSERT INTO `tb_instansi` (`id_instansi`, `nama_instansi`) VALUES
-(1, 'Badan Keuangan Daerah Prov. Kalimantan Selatan'),
-(2, 'Sekretariat Daerah Kab. Tanah Laut');
+INSERT INTO `tb_instansi` (`id_instansi`, `nama_instansi`, `kabupaten_kota`) VALUES
+(1, 'Badan Keuangan Daerah Prov. Kalimantan Selatan', 'Provinsi'),
+(2, 'Sekretariat Daerah Kab. Tanah Laut', 'Kabupaten');
 
 -- --------------------------------------------------------
 

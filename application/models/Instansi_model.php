@@ -37,4 +37,13 @@
 			}
 		}
 
+		public function cari($kabupaten_kota)
+		{
+			$query = $this->db->from('tb_instansi')
+							  ->like('kabupaten_kota', $kabupaten_kota)
+							  ->get()->result();
+
+			return $query;
+		}
+
 	}

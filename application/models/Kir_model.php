@@ -39,14 +39,15 @@ class Kir_model extends CI_Model
 		}
 	}
 
-    public function cari($id_ruangan)
+    public function cari($id_ruangan, $group_by = [])
     {
-        $query = $this->db->select('tb_inventaris.*, tb_ruangan.nama_ruangan')
-                            ->from('tb_inventaris')
-                            ->join('tb_ruangan', ' tb_inventaris.id_ruangan = tb_ruangan.id_ruangan', 'left')
-                            ->where([
-                                'tb_inventaris.id_ruangan' => $id_ruangan
-                            ])->get()->result_array();
+        $query = $this->db
+            ->select('tb_inventaris.*, tb_ruangan.nama_ruangan')
+            ->from('tb_inventaris')
+            ->join('tb_ruangan', ' tb_inventaris.id_ruangan = tb_ruangan.id_ruangan', 'left')
+            ->where([
+                'tb_inventaris.id_ruangan' => $id_ruangan
+            ])->get()->result_array();
 
         return $query;
     }
