@@ -14,7 +14,7 @@
 				$data['kir'] = $this->kir_model->cari($ruangan);
 				$data['selected_id_ruangan'] = $ruangan;
 			} else {
-				$data['kir']=$this->kir_model;
+				$data['kir'] = $this->kir_model;
 			}
 
 			$data['ruangan'] = $this->ruangan_model->get_data();
@@ -44,6 +44,7 @@
 			$groupBy = ['tb_inventaris.nama_barang', 'tb_inventaris.merk', 'tb_inventaris.tahun_pembelian'];
 
 			$data['laporanKir'] = $this->kir_model->cari($id_ruangan, $groupBy);
+			$data['ruangan'] = $this->ruangan_model->get_data_by_id($id_ruangan);
 
 			$this->load->library('pdf');
 

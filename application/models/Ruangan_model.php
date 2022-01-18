@@ -36,4 +36,10 @@
 			}
 		}
 
+		public function get_data_by_id($id)
+		{
+			$query = "select * from tb_ruangan where id_ruangan = $id";
+			return $this->db->query($query)->row();
+		}
+
 	}

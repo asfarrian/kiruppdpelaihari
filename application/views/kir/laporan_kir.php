@@ -11,6 +11,25 @@
         tr .spaceUnder > td {
             padding-bottom: 5em;
         }
+
+        table.border, th.border, td.border {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .text-td td{
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .center-table {
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
@@ -30,73 +49,78 @@
         <tr>
             <td>RUANGAN</td>
             <td>:</td>
-            <td>xxxxxxxxxxxxxxxxxxxxxx</td>
+            <td><?= strtoupper($ruangan->nama_ruangan) ?></td>
     </table>
 
     <br>
 
-    <table class="table">
+    <table class="table table-bordered table-striped border text-td">
         <thead>
             <tr>
-                <th scope="col">No</th>
-                <th scope="col">Kode Barang</th>
-                <th scope="col">Jenis Barang / Nama Barang</th>
-                <th scope="col">Merk / Type</th>
-                <th scope="col">Ukuran / CC </th>
-                <th scope="col">Thn Beli</th>
-                <th scope="col">Jumlah</th>
-                <th scope="col">Keterangan</th>
+                <th class="border" scope="col">No</th>
+                <th class="border" scope="col">Kode Barang</th>
+                <th class="border" scope="col">Jenis Barang / Nama Barang</th>
+                <th class="border" scope="col">Merk / Type</th>
+                <th class="border" scope="col">Ukuran / CC </th>
+                <th class="border" scope="col">Thn Beli</th>
+                <th class="border" scope="col">Jumlah</th>
+                <th class="border" scope="col">Keterangan</th>
             </tr>
             <tr>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
+                <th class="border">1</th>
+                <th class="border">2</th>
+                <th class="border">3</th>
+                <th class="border">4</th>
+                <th class="border">5</th>
+                <th class="border">6</th>
+                <th class="border">7</th>
+                <th class="border">8</th>
             </tr>
         </thead>
         <tbody>
             <?php $no = 1; foreach ($laporanKir as $kir) { ?>
                 <tr>
-                    <td><?= $no++ ?></td>
-                    <td><?= $kir['kode_barang'] ?></td>
-                    <td><?= $kir['nama_barang'] ?></td>
-                    <td><?= $kir['merk'] ?></td>
-                    <td><?= $kir['ukuran'] ?></td>
-                    <td><?= $kir['tahun_pembelian'] ?></td>
-                    <td></td>
-                    <td><?= $kir['keterangan'] ?></td>
+                    <td class="border"><?= $no++ ?></td>
+                    <td class="border"><?= $kir['kode_barang'] ?></td>
+                    <td class="border"><?= $kir['nama_barang'] ?></td>
+                    <td class="border"><?= $kir['merk'] ?></td>
+                    <td class="border"><?= $kir['ukuran'] ?></td>
+                    <td class="border"><?= $kir['tahun_pembelian'] ?></td>
+                    <td class="border"></td>
+                    <td class="border"><?= $kir['keterangan'] ?></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
 
     <br><br>
-    <table class="table">
+    <div class="page-break"></div>
+    <table class="table center-table text-td" style="width: 100%;">
         <tbody>
             <tr>
-                <td colspan="3" style="text-align: right;">Pelaihari, XXXXX</td>
+                <td></td>
+                <td></td>
+                <td>Pelaihari, <?= format_indo(date('Y-m-d')); ?></td>
             </tr>
             <tr>
-                <td colspan="3">Mengetahui:</td>
+                <td>Mengetahui:</td>
+                <td></td>
+                <td></td>
             </tr>
             <tr class="spaceUnder">
-                <td>KEPALA UPPD PELAIHARI</td>
-                <td><br></td>
-                <td>PENGELOLA PEMANFAATAN BARANG MILIK DAERAH</td>
+                <td style="padding-bottom: 100px;"><b>UPPD PELAIHARI</b></td>
+                <td style="padding-bottom: 100px;"><br></td>
+                <td style="padding-bottom: 100px;"><b>PEMANFAATAN BARANG <br> MILIK DAERAH</b></td>
             </tr>
             <tr>
-                <td>Drs. FAJAR GEMILANG, M. Si</td>
+                <td class="text-center"><b>FAJAR GEMILANG, M. Si</b></td>
                 <td><br></td>
-                <td>FARIDA ARIYANI</td>
+                <td class="text-center"><b>ARIYANI</b></td>
             </tr>
             <tr>
-                <td>NIP. 19661126 199310 1 001</td>
+                <td class="text-center">NIP. 19661126 199310 1 001</td>
                 <td><br></td>
-                <td>NIP. 19760228 200701 2 012</td>
+                <td class="text-center">NIP. 19760228 200701 2 012</td>
             </tr>
         </tbody>
     </table>

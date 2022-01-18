@@ -6,12 +6,19 @@
 			$this->load->model('ruangan_model');
 		}
 
-		public function index(){//localhost/simon_pkl/dashboard
-			$data['ruangan']=$this->ruangan_model->get_data();
+		public function template($view, $data)
+		{
 			$this->load->view('template/sidebar');
 			$this->load->view('template/header');
-			$this->load->view('ruangan/view_data', $data);
+			$this->load->view($view, $data);
 			$this->load->view('template/footer');
+		}
+
+		public function index()
+		{//localhost/simon_pkl/dashboard
+			$data['ruangan']=$this->ruangan_model->get_data();
+
+			$this->template('ruangan/view_data', $data);
 		}
 
 		public function tambah(){
@@ -20,10 +27,8 @@
 				redirect('ruangan');
 			}else{
                 $data['ruangan'] = $this->ruangan_model->get_data();
-				$this->load->view('template/sidebar');
-				$this->load->view('template/header');
-				$this->load->view('ruangan/insert_data', $data);
-				$this->load->view('template/footer');
+
+				$this->template('ruangan/insert_data', $data);
 			}
 		}
 
@@ -48,5 +53,4 @@
 				redirect('ruangan');
 			}
 		}
-		
 	}

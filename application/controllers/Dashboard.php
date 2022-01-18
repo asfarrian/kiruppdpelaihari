@@ -6,8 +6,9 @@
 			$this->load->model(array('dashboard_model', 'ruangan_model'));
 		}
 
-		public function index(){//localhost/simon_pkl/dashboard
-			$data['dashboard']=$this->dashboard_model->get_lihat_dashboard();
+		public function index()
+		{
+			$data['dashboard']=$this->dashboard_model->lihat_dashboard_by_tahun(2010);
 			$this->load->view('template/sidebar');
 			$this->load->view('template/header');
 			$this->load->view('dashboard/view_data', $data);

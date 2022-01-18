@@ -1,11 +1,26 @@
 <?php
-	class Dashboard_model extends CI_Model{
-		public function lihat_dashboard($id_barang='')
+class Dashboard_model extends CI_Model
+{
+	public function lihat_dashboard($id_barang='')
     {
         if ($id_barang==''){
-            return $this->db->query("SELECT tb_inventaris.id_barang, tb_inventaris.kode_barang,tb_inventaris.nama_barang,tb_inventaris.merk,tb_inventaris.nomor_registrasi,tb_inventaris.ukuran,tb_inventaris.bahan,tb_inventaris.tahun_pembelian,tb_inventaris.asal_usul,tb_inventaris.kondisi,tb_inventaris.harga,tb_inventaris.keterangan,tb_ruangan.id_ruangan,tb_ruangan.nama_ruangan FROM tb_ruangan join tb_inventaris ON tb_ruangan.id_ruangan=tb_inventaris.id_ruangan")->result_array();
+            // return $this->db->query("SELECT tb_inventaris.id_barang, tb_inventaris.kode_barang,tb_inventaris.nama_barang,tb_inventaris.merk,tb_inventaris.nomor_registrasi,tb_inventaris.ukuran,tb_inventaris.bahan,tb_inventaris.tahun_pembelian,tb_inventaris.asal_usul,tb_inventaris.kondisi,tb_inventaris.harga,tb_inventaris.keterangan,tb_ruangan.id_ruangan,tb_ruangan.nama_ruangan FROM tb_ruangan join tb_inventaris ON tb_ruangan.id_ruangan=tb_inventaris.id_ruangan")->result_array();
+
+            $query = $this->db->select('tb_inventaris.*, tb_ruangan.nama_ruangan')
+                                ->from('tb_inventaris')
+                                ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
+                                ->get()->result_array();
+            return $query;
+
         }else {
-            return $this->db->query("SELECT tb_inventaris.id_barang, tb_inventaris.kode_barang,tb_inventaris.nama_barang,tb_inventaris.merk,tb_inventaris.nomor_registrasi,tb_inventaris.ukuran,tb_inventaris.bahan,tb_inventaris.tahun_pembelian,tb_inventaris.asal_usul,tb_inventaris.kondisi,tb_inventaris.harga,tb_inventaris.keterangan,tb_ruangan.id_ruangan,tb_ruangan.nama_ruangan FROM tb_ruangan join tb_inventaris ON tb_ruangan.id_ruangan=tb_inventaris.id_ruangan where id_barang='$id_barang'")->row_array();
+            // return $this->db->query("SELECT tb_inventaris.id_barang, tb_inventaris.kode_barang,tb_inventaris.nama_barang,tb_inventaris.merk,tb_inventaris.nomor_registrasi,tb_inventaris.ukuran,tb_inventaris.bahan,tb_inventaris.tahun_pembelian,tb_inventaris.asal_usul,tb_inventaris.kondisi,tb_inventaris.harga,tb_inventaris.keterangan,tb_ruangan.id_ruangan,tb_ruangan.nama_ruangan FROM tb_ruangan join tb_inventaris ON tb_ruangan.id_ruangan=tb_inventaris.id_ruangan where id_barang='$id_barang'")->row_array();
+
+            $query = $this->db->select('tb_inventaris.*, tb_ruangan.nama_ruangan')
+                                ->from('tb_inventaris')
+                                ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
+                                ->where(['tb_inventaris.id_barang' => $id_barang])
+                                ->get()->row_array();
+            return $query;
         }
     }
 
@@ -18,9 +33,19 @@
         }
     }
 
+    public function lihat_dashboard_by_tahun($tahun)
+    {
+        $query = $this->db->select('*')
+                            ->from('tb_inventaris')
+                            ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
+                            ->where(['tb_inventaris.tahun_pembelian' => $tahun])
+                            ->get()->result_array();
 
+        return $query;
+    }
 
-	public function update_data($id){
+	public function update_data($id)
+    {
 		$data = ['kode_barang'=> $this->input->post('kode_barang')];
         $data = ['nama_barang'=> $this->input->post('nama_barang')];
         $data = ['merk'=> $this->input->post('merk')];
@@ -40,4 +65,26 @@
 		}
 	}
 
-	}
+    public function contoh()
+    {
+        // $query = $this->db->select('tb_inventaris.*, tb_ruangan.ruangan, tb_kondisi.kondisi')
+        //                     ->from('tb_inventaris')
+        //                     ->join('tb_ruangan', 'tb_ruangan.id = tb_inventaris.id_ruangan', 'left')
+        //                     ->join('tb_kondisi', 'tb_kondisi.id = tb_inventaris.id_kondisi', 'left')
+        //                     ->get()->result();
+
+        // return $query;
+
+        // $query = $this->db->select('tb_inventaris.*, tb_ruangan.ruangan, tb_kondisi.kondisi')
+        //                     ->from('tb_inventaris')
+        //                     ->join('tb_ruangan', 'tb_ruangan.id = tb_inventaris.id_ruangan', 'left')
+        //                     ->join('tb_kondisi', 'tb_kondisi.id = tb_ruangan.id_kondisi', 'left')
+        //                     ->get()->result();
+
+        // return $query;
+
+        // result() ====> $data->ruangan
+        // result_array() ======> $data['ruangan']
+    }
+
+}
