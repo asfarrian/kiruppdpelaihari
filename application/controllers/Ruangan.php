@@ -1,17 +1,11 @@
 <?php
-	class Ruangan extends CI_Controller{
+	include_once(APPPATH.'controllers/Controller.php');
+	class Ruangan extends Controller
+	{
 		function __construct()
 		{
 			parent::__construct();
 			$this->load->model('ruangan_model');
-		}
-
-		public function template($view, $data)
-		{
-			$this->load->view('template/sidebar');
-			$this->load->view('template/header');
-			$this->load->view($view, $data);
-			$this->load->view('template/footer');
 		}
 
 		public function index()
@@ -38,10 +32,8 @@
 				redirect('ruangan');
 			}else{
 				$data['ruangan'] = $this->ruangan_model->get_data_byid($id);
-				$this->load->view('template/sidebar');
-				$this->load->view('template/header');
-				$this->load->view('ruangan/update_data', $data);
-				$this->load->view('template/footer');
+
+				$this->template('ruangan/update_data', $data);
 			}
 		}
 

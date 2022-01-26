@@ -1,5 +1,7 @@
 <?php
-	class Kir extends CI_Controller{
+	include_once(APPPATH.'controllers/Controller.php');
+	class Kir extends Controller
+	{
 		function __construct()
 		{
 			parent::__construct();

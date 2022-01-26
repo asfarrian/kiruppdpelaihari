@@ -1,5 +1,7 @@
 <?php
-	class Barangrusak extends CI_Controller{
+	include_once(APPPATH.'controllers/Controller.php');
+	class Barangrusak extends Controller
+	{
 		function __construct()
 		{
 			parent::__construct();

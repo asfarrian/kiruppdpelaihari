@@ -4,7 +4,7 @@
                    <!-- Page Heading -->
                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Mutasi Barang Masuk</h1>
-                        <a href="<?php echo base_url('mutasimasuk/tambah');?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="<?= base_url('mutasimasuk/tambah');?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i>Tambah Barang Masuk</a>
                     </div>
 
@@ -74,24 +74,24 @@
                 ?>
                     <tr>
                         <td><?= $no++ ?></td>
-                        <td><?php echo $data['id_barang'] ?></td>
-                        <td><?php echo $data['nama_barang'] ?></td>
-                        <td><?php echo $data['merk'] ?></td>
-                        <td><?php echo $data['ukuran'] ?></td>
-                        <td><?php echo $data['no_bast'] ?></td>
-                        <td><?php echo $data['tanggal'] ?></td>
-                        <td><?php echo $data['nama_instansi'] ?></td>
-                        <td><?php echo $data['tahun_anggaran'] ?></td>
-                        <td><?php echo $data['keterangan'] ?></td>
-                        <td><?php echo $data['nama_ruangan'] ?></td>
+                        <td><?= $data['id_barang'] ?></td>
+                        <td><?= $data['nama_barang'] ?></td>
+                        <td><?= $data['merk'] ?></td>
+                        <td><?= $data['ukuran'] ?></td>
+                        <td><?= $data['no_bast'] ?></td>
+                        <td><?= $data['tanggal'] ?></td>
+                        <td><?= $data['nama_instansi'] ?></td>
+                        <td><?= $data['tahun_anggaran'] ?></td>
+                        <td><?= $data['keterangan'] ?></td>
+                        <td><?= $data['nama_ruangan'] ?></td>
                         <td>
                             <div class='btn-group'>
                             <a
-                                href="<?php echo site_url('mutasimasuk/ubah/'.$data['id_barangmasuk']) ?>"
+                                href='<?= site_url("Mutasimasuk/ubah/". $data['id_barangmasuk'] ."/". $data['id_barang']) ?>'
                                 class='btn btn-warning'>Ubah</a>&nbsp;
                             <a
-                                href="<?php echo site_url('mutasimasuk/hapus/'.$data['id_barangmasuk']) ?>"
-						        class='btn btn-danger'
+                                class='btn btn-danger'
+                                href='<?= site_url("Mutasimasuk/hapus/". $data['id_barangmasuk'] ."/". $data['id_barang']) ?>'
                                 onclick="return confirm('Ingin menghapus data ini?')">Hapus</a>
                             </div>
                         </td>

@@ -19,60 +19,72 @@
 						<form action="" method="post" class="mt-3">
                         <div class="form-group">
 								<label for="nama">Nama Barang</label>
-								<input type="text" autocomplete="off" name="nama_barang" class="form-control" value="<?php echo ($dashboard['nama_barang'])?>" required>
+								<input
+									class="form-control"
+									type="text"
+									name="nama_barang"
+									value="<?= $mutasimasuk['nama_barang'] ?>" required>
 							</div>
                             <div class="form-group">
 								<label for="nama">Merk</label>
-								<input type="text" autocomplete="off" name="merk" class="form-control" value="<?php echo $dashboard->merk;?>" required>
+								<input
+									class="form-control"
+									type="text"
+									name="merk"
+									value="<?= $mutasimasuk['merk'] ?>" required>
 							</div>
                             <div class="form-group">
 								<label for="nama">Ukuran</label>
-								<input type="text" autocomplete="off" name="ukuran" class="form-control" value="<?php echo $dashboard->ukuran;?>" required>
+								<input
+									class="form-control"
+									type="text"
+									name="ukuran"
+									value="<?= $mutasimasuk['ukuran'] ?>" required>
 							</div>
                             <div class="form-group">
 								<label for="nama">No BAST</label>
-								<input type="text" autocomplete="off" name="no_bast" class="form-control" value="<?php echo $mutasimasuk->no_bast;?>" required>
+								<input
+									class="form-control"
+									type="text"
+									name="no_bast"
+									value="<?= $mutasimasuk['no_bast'] ?>" required>
 							</div>
                             <div class="form-group">
 								<label for="nama">Tanggal</label>
-								<input type="date" autocomplete="off" name="tanggal" class="form-control" value="<?php echo $mutasimasuk->tanggal;?>" required>
+								<input
+									class="form-control"
+									type="date"
+									name="tanggal"
+									value="<?= $mutasimasuk['tanggal'] ?>" required>
 							</div>
                             <div class="form-group">
 								<label for="nama">Barang Dari</label>
 								<select name="id_instansi" required class="form-control">
 									<option value="">Pilih Instansi</option>
-									<?php
-										foreach($instansi as $row){
-											echo "<option value='$row->id_instansi'>$row->nama_instansi</option>";
-										}
-										?>
+									<?php foreach($instansi as $row) { ?>
+										<option
+											value="<?= $row->id_instansi ?>"
+											<?= $row->id_instansi == $mutasimasuk['id_instansi'] ? 'selected' : '' ?> >
+												<?= $row->nama_instansi ?></option>
+									<?php } ?>
 								</select>
                             </div>
                             <div class="form-group">
 								<label for="nama">Tahun Anggaran</label>
 								<select name="tahun_anggaran" required class="form-control">
-									<option value="<?php echo $mutasimasuk->tanggal;?>" ></option>
-                                    <option value="2021">2021</option>
-									<option value="2021">2022</option>
-									<option value="2021">2023</option>
-									<option value="2021">2024</option>
-									<option value="2021">2025</option>
- >								</select>
+									<option value="" >Pilih Tahun</option>
+									<?php foreach($tahun as $thn) { ?>
+										<option value="<?= $thn ?>" <?= $thn == $mutasimasuk['tahun_anggaran'] ? 'selected': '' ?>><?= $thn ?></option>
+									<?php } ?>
+								</select>
 							</div>
                             <div class="form-group">
 								<label for="nama">Ruangan</label>
 								<select name="id_ruangan" required class="form-control">
-                                <option value="">Pilih Kelas</option>
-									<?php
-										foreach($ruangan as $row){
-                                            if($row->id_ruangan == $mutasimasuk->id_ruangan){
-                                                $select = "selected";
-                                            }else{
-                                                $select = "";
-                                            }
-											echo "<option value='$row->id_ruangan' $select>$row->nama_ruangan</option>";
-										}
-										?>
+									<option value="">Pilih Kelas</option>
+									<?php foreach($ruangan as $row) { ?>
+										<option value="<?= $row->id_ruangan ?>" <?= $row->id_ruangan == $mutasimasuk['id_ruangan'] ? 'selected': '' ?>> <?= $row->nama_ruangan ?> </option>
+									<?php } ?>
 								</select>
 							</div>
 							<div class="form-group">
@@ -83,7 +95,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
      </div>
  </div>
 
