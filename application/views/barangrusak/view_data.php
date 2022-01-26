@@ -3,7 +3,9 @@
  
                    <!-- Page Heading -->
                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Mutasi Barang Masuk</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Inventaris Barang Rusak Berat</h1>
+                        <a href="<?php echo base_url('ruangan/tambah');?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-print fa-sm text-white-50"></i>  Cetak  </a>
                     </div>
 
  <!-- DataTales Example -->
@@ -17,9 +19,7 @@
                  <thead>
                      <tr>
                          <th>No</th>
-
                          <th>ID Barang</th>
-                         <th>ID Barang Masuk</th>
                          <th>Kode Barang</th>
                          <th>Nama Barang</th>
                          <th>Merk</th>
@@ -31,18 +31,18 @@
                          <th>Kondisi</th>
                          <th>Harga</th>
                          <th>Keterangan</th>
+                         <th>Ruangan</th>
                          <th>Aksi</th>
                      </tr>
                  </thead>
                  <tbody> 
                  <?php
 					$no = 1;
-					foreach($barangmasuk as $data):
+					foreach($barangrusak as $data):
                     ?>
 					 <tr>
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $data['id_barang'] ?></td>
-                        <td><?php echo $data['id_barangmasuk'] ?></td>
                         <td><?php echo $data['kode_barang'] ?></td>
                         <td><?php echo $data['nama_barang'] ?></td>
                         <td><?php echo $data['merk'] ?></td>
@@ -54,10 +54,11 @@
                         <td><?php echo $data['kondisi'] ?></td>
                         <td>Rp<?php echo number_format($data['harga'],2,",",".")?></td>
                         <td><?php echo $data['keterangan'] ?></td>
+                        <td><?php echo $data['nama_ruangan'] ?></td>
                         <td><div class='btn-group'>
-                        <a href="<?php echo base_url('dashboard/ubah/'.$data['id_barang']) ?>" class='btn btn-warning'>Ubah</a> &nbsp;
+                        <a href="<?php echo base_url('barangrusak/ubah/'.$data['id_barang']) ?>" class='btn btn-warning'>Ubah</a> &nbsp;
                         <a href=".base_url('tempat/hapus/'.$row->id_barang)." 
-						class='btn btn-danger' onclick='return confirm(\"Ingin menghapus data ini?\");'>Keluar</a>
+						class='btn btn-danger' onclick='return confirm(\"Ingin memusnahkan data ini?\");'>Pemusnahan</a>
                         </td>
                         </tr>
                <?php

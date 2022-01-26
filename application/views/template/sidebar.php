@@ -50,7 +50,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+            <a class="nav-link" href="<?php echo base_url('mutasimasuk');?>">
                     <i class="fas fa-download"></i>
                     <span>Barang masuk</span></a>
             </li>
@@ -81,7 +81,7 @@
             </li>
             <!-- Nav Item - Ruangan -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="<?php echo base_url('barangrusak');?>">
                 <i class="fas fa-times"></i>
                 <span>Barang Rusak Berat</span></a>
             </li>

@@ -30,12 +30,21 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .kop-font {
+            font-size:14px;
+        }
+        .judul-font {
+            font-size:12px;
+        }
+        
+
+
     </style>
 </head>
 <body>
-    <h4 style="text-align: center;">KARTU INVENTARIS RUANGAN</h4>
+    <h4 class="table-font" style="text-align: center;">KARTU INVENTARIS RUANGAN</h4>
 
-    <table>
+    <table class="judul-font">
         <tr>
             <td>PROVINSI</td>
             <td>:</td>
@@ -51,19 +60,16 @@
             <td>:</td>
             <td><?= strtoupper($ruangan->nama_ruangan) ?></td>
     </table>
-
-    <br>
-
-    <table class="table table-bordered table-striped border text-td">
+    
+    <table class="table table-bordered table-striped border text-td judul-font">
         <thead>
             <tr>
-                <th class="border" scope="col">No</th>
-                <th class="border" scope="col">Kode Barang</th>
-                <th class="border" scope="col">Jenis Barang / Nama Barang</th>
-                <th class="border" scope="col">Merk / Type</th>
-                <th class="border" scope="col">Ukuran / CC </th>
+                <th class="border" scope="col" width="25px">No</th>
+                <th class="border" scope="col" width="75px">Kode<br>Barang</th>
+                <th class="border" scope="col" width="140px">Jenis Barang <br>/ Nama Barang</th>
+                <th class="border" scope="col" width="220px">Merk / Type</th>
+                <th class="border" scope="col" width="75px">Ukuran / CC </th>
                 <th class="border" scope="col">Thn Beli</th>
-                <th class="border" scope="col">Jumlah</th>
                 <th class="border" scope="col">Keterangan</th>
             </tr>
             <tr>
@@ -74,7 +80,6 @@
                 <th class="border">5</th>
                 <th class="border">6</th>
                 <th class="border">7</th>
-                <th class="border">8</th>
             </tr>
         </thead>
         <tbody>
@@ -86,16 +91,14 @@
                     <td class="border"><?= $kir['merk'] ?></td>
                     <td class="border"><?= $kir['ukuran'] ?></td>
                     <td class="border"><?= $kir['tahun_pembelian'] ?></td>
-                    <td class="border"></td>
                     <td class="border"><?= $kir['keterangan'] ?></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
 
-    <br><br>
-    <div class="page-break"></div>
-    <table class="table center-table text-td" style="width: 100%;">
+    <br><br><br>
+    <table class="table center-table text-td judul-font" style="width: 100%;">
         <tbody>
             <tr>
                 <td></td>
@@ -108,14 +111,14 @@
                 <td></td>
             </tr>
             <tr class="spaceUnder">
-                <td style="padding-bottom: 100px;"><b>UPPD PELAIHARI</b></td>
-                <td style="padding-bottom: 100px;"><br></td>
-                <td style="padding-bottom: 100px;"><b>PEMANFAATAN BARANG <br> MILIK DAERAH</b></td>
+                <td style="padding-bottom: 70px;"><b>UPPD PELAIHARI</b></td>
+                <td style="padding-bottom: 70px;"><br></td>
+                <td style="padding-bottom: 70px;"><b>PEMANFAATAN BARANG <br> MILIK DAERAH</b></td>
             </tr>
             <tr>
                 <td class="text-center"><b>FAJAR GEMILANG, M. Si</b></td>
                 <td><br></td>
-                <td class="text-center"><b>ARIYANI</b></td>
+                <td class="text-center"><b>FARIDA ARIYANI</b></td>
             </tr>
             <tr>
                 <td class="text-center">NIP. 19661126 199310 1 001</td>

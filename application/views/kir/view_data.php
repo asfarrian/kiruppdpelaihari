@@ -35,18 +35,20 @@
 							</div>
                         <input type="submit" class="btn btn-primary" value="Cari">
                         </form>
-                        <?php if(isset($selected_id_ruangan)) { ?>
-                            <a
-                                href="<?= site_url("Kir/laporan_pdf/". $selected_id_ruangan) ?>"
-                                target="_blank"
-                                class="btn btn-primary mt-3">Cetak PDF</a>
-                        <?php } ?>
                     </div>
                 </div>
             </div>
 				</div>
 			</div>
 		</div>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <?php if(isset($selected_id_ruangan)) { ?>
+                            <a
+                                href="<?= site_url("Kir/laporan_pdf/". $selected_id_ruangan) ?>"
+                                target="_blank"
+                                class="btn btn-primary mt-3">Cetak PDF</a>
+                        <?php } ?>
+        </div>
 		<div class="card shadow mb-4">
      <div class="card-header py-3">
          <h6 class="m-0 font-weight-bold text-primary">Table</h6>
@@ -61,13 +63,8 @@
                          <th>Kode Barang</th>
                          <th>Nama Barang</th>
                          <th>Merk</th>
-                         <th>Nomor Registrasi</th>
                          <th>Ukuran</th>
-                         <th>Bahan</th>
                          <th>Tahun</th>
-                         <th>Asal-Usul</th>
-                         <th>Kondisi</th>
-                         <th>Harga</th>
                          <th>Keterangan</th>
                          <th>Ruangan</th>
                          <th>Aksi</th>
@@ -84,23 +81,14 @@
                         <td><?php echo $data['kode_barang'] ?></td>
                         <td><?php echo $data['nama_barang'] ?></td>
                         <td><?php echo $data['merk'] ?></td>
-                        <td><?php echo $data['nomor_registrasi'] ?></td>
                         <td><?php echo $data['ukuran'] ?></td>
-                        <td><?php echo $data['bahan'] ?></td>
                         <td><?php echo $data['tahun_pembelian'] ?></td>
-                        <td><?php echo $data['asal_usul'] ?></td>
-                        <td><?php echo $data['kondisi'] ?></td>
-                        <td>Rp<?php echo number_format($data['harga'],2,",",".")?></td>
                         <td><?php echo $data['keterangan'] ?></td>
                         <td><?php echo $data['nama_ruangan'] ?></td>
                         <td><div class='btn-group'>
                             <a
                                 href="<?php echo base_url('dashboard/ubah/'.$data['id_barang']) ?>"
-                                class='btn btn-warning'>Ubah</a> &nbsp;
-                            <a
-                                href=".base_url('tempat/hapus/'.$row->id_barang)."
-                                class='btn btn-danger'
-                                onclick='return confirm("Ingin menghapus data ini?")'>Keluar</a>
+                                class='btn btn-warning'>Ubah</a>
                         </td>
                         </tr>
                <?php

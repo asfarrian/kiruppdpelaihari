@@ -10,8 +10,7 @@
 
 		public function insert_data(){
 			$data = [
-                'nama_instansi'=> $this->input->post('nama'),
-				'kabupaten_kota'=> $this->input->post('kota')
+                'nama_instansi'=> $this->input->post('nama')
 			];
 			$this->db->insert("tb_instansi", $data);
 			if($this->db->affected_rows()>0){
@@ -28,8 +27,7 @@
 		}
 
 		public function update_data($id){
-			$data = ['nama_instansi'=> $this->input->post('nama'),
-			'kabupaten_kota'=> $this->input->post('kota')];
+			$data = ['nama_instansi'=> $this->input->post('nama')];
 			$this->db->where('id_instansi', $id);
 			$this->db->update('tb_instansi', $data);
 			if($this->db->affected_rows()>0){
@@ -37,13 +35,5 @@
 			}
 		}
 
-		public function cari($kabupaten_kota)
-		{
-			$query = $this->db->from('tb_instansi')
-							  ->like('kabupaten_kota', $kabupaten_kota)
-							  ->get()->result();
-
-			return $query;
-		}
 
 	}

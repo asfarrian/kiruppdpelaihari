@@ -8,7 +8,7 @@
 
 		public function index()
 		{
-			$data['dashboard']=$this->dashboard_model->lihat_dashboard_by_tahun(2010);
+			$data['dashboard']=$this->dashboard_model->lihat_dashboard_by_status('Unit Pelayanan Pendapatan Daerah Pelaihari');
 			$this->load->view('template/sidebar');
 			$this->load->view('template/header');
 			$this->load->view('dashboard/view_data', $data);

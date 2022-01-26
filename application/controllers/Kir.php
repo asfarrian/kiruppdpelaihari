@@ -48,9 +48,9 @@
 
 			$this->load->library('pdf');
 
-			$this->pdf->setPaper('A4', 'landscape');
+			$this->pdf->setPaper('Folio', 'potrait');
 			$this->pdf->filename = "laporan-kir.pdf";
-			$this->pdf->load_view('kir/laporan_kir', $data);
+			$this->pdf->load_view('kir/laporan_data', $data);
 		}
 
 	}
