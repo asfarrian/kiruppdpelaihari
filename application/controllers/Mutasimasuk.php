@@ -1,5 +1,7 @@
 <?php
-	class Mutasimasuk extends CI_Controller{
+	include_once(APPPATH.'controllers/Controller.php');
+	class Mutasimasuk extends Controller
+	{
 		function __construct()
 		{
 			parent::__construct();
@@ -14,7 +16,7 @@
 				$data['mutasimasuk'] = $this->mutasimasuk_model->cari($tahun_anggaran);
 				$data['selected_mutasi_masuk'] = $tahun_anggaran;
 			} else {
-				$data['mutasimasuk']=$this->mutasimasuk_model->get_data();
+				$data['mutasimasuk']=$this->mutasimasuk_model;
 			}
 
 			$this->load->view('template/sidebar');
@@ -23,7 +25,8 @@
 			$this->load->view('template/footer');
 		}
 
-		public function tambah(){
+		public function tambah()
+		{
 			if(isset($_POST['simpan'])){
 				$this->mutasimasuk_model->insert_data();
 				redirect('mutasimasuk');
@@ -31,6 +34,7 @@
                 $data['dashboard'] = $this->dashboard_model->get_data();
 				$data['instansi'] = $this->instansi_model->get_data();
 				$data['ruangan'] = $this->ruangan_model->get_data();
+
 				$this->load->view('template/sidebar');
 				$this->load->view('template/header');
 				$this->load->view('mutasimasuk/insert_data', $data);
@@ -38,15 +42,17 @@
 			}
 		}
 
-		public function ubah($id){
+		public function ubah($id_barangmasuk, $id_barang)
+		{
 			if(isset($_POST['ubah'])){
-				$this->mutasimasuk_model->update_data($id);
+				$this->mutasimasuk_model->update_data($id_barangmasuk, $id_barang);
 				redirect('mutasimasuk');
 			}else{
-				$data['mutasimasuk'] = $this->mutasimasuk_model->get_data_byid($id);
-				$data['dashboard'] = $this->dashboard_model->get_data();
+				$data['mutasimasuk'] = $this->mutasimasuk_model->get_data_byid($id_barangmasuk);
 				$data['instansi'] = $this->instansi_model->get_data();
 				$data['ruangan'] = $this->ruangan_model->get_data();
+				$data['tahun'] = [2021, 2022, 2023, 2024, 2025];
+
 				$this->load->view('template/sidebar');
 				$this->load->view('template/header');
 				$this->load->view('mutasimasuk/update_data', $data);
@@ -54,13 +60,28 @@
 			}
 		}
 
-		public function hapus($id){
-			if(!isset($id)){
-				redirect('mutasimasuk');
-			}else{
-				$this->instansi_model->delete_data($id);
-				redirect('mutasimasuk');
-			}
+		public function hapus($id_barangmasuk, $id_barang)
+		{
+			$this->mutasimasuk_model->delete_data($id_barangmasuk, $id_barang);
+
+			redirect('mutasimasuk');
 		}
-		
+
+		public function laporan_pdf()
+		{
+			{
+				$tahun_anggaran = $this->input->get('tahun_anggaran', TRUE);
+	
+				if ($tahun_anggaran) {
+					$data['mutasimasuk'] = $this->mutasimasuk_model->cari($tahun_anggaran);
+					$data['selected_mutasi_masuk'] = $tahun_anggaran;
+				} else {
+					$data['mutasimasuk']=$this->mutasimasuk_model->get_data();
+				}
+			$this->load->library('pdf');
+			$this->pdf->setPaper('Folio', 'potrait');
+			$this->pdf->filename = "laporan-mutasimasuk.pdf";
+			$this->pdf->load_view('mutasimasuk/laporan_pdf', $data);
+		}
 	}
+}

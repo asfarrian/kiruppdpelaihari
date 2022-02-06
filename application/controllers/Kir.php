@@ -1,5 +1,7 @@
 <?php
-	class Kir extends CI_Controller{
+	include_once(APPPATH.'controllers/Controller.php');
+	class Kir extends Controller
+	{
 		function __construct()
 		{
 			parent::__construct();
@@ -50,7 +52,7 @@
 
 			$this->pdf->setPaper('Folio', 'potrait');
 			$this->pdf->filename = "laporan-kir.pdf";
-			$this->pdf->load_view('kir/laporan_data', $data);
+			$this->pdf->load_view('kir/laporan_pdf', $data);
 		}
 
 	}

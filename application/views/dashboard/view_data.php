@@ -4,7 +4,7 @@
                    <!-- Page Heading -->
                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Inventaris Barang Peralatan & Mesin</h1>
-                        <a href="<?php echo base_url('ruangan/tambah');?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="<?= site_url("dashboard/laporan_pdf/")?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-print fa-sm text-white-50"></i>  Cetak  </a>
                     </div>
 
@@ -57,8 +57,7 @@
                         <td><?php echo $data['nama_ruangan'] ?></td>
                         <td><div class='btn-group'>
                         <a href="<?php echo base_url('dashboard/ubah/'.$data['id_barang']) ?>" class='btn btn-warning'>Ubah</a> &nbsp;
-                        <a href=".base_url('tempat/hapus/'.$row->id_barang)." 
-						class='btn btn-danger' onclick='return confirm(\"Ingin menghapus data ini?\");'>Keluar</a>
+                        <a href="<?php echo base_url('dashboard/keluar/'.$data['id_barang']) ?>" class='btn btn-danger'>Keluar</a>
                         </td>
                         </tr>
                <?php

@@ -3,8 +3,8 @@
  
                    <!-- Page Heading -->
                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Inventaris Barang Rusak Berat</h1>
-                        <a href="<?php echo base_url('ruangan/tambah');?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <h1 class="h3 mb-0 text-gray-800">Data Pengusulan Pemusnahan Barang</h1>
+                        <a href="<?= site_url("usulpemusnahan/laporan_pdf/")?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-print fa-sm text-white-50"></i>  Cetak  </a>
                     </div>
 
@@ -38,7 +38,7 @@
                  <tbody> 
                  <?php
 					$no = 1;
-					foreach($barangrusak as $data):
+					foreach($usulpemusnahan as $data):
                     ?>
 					 <tr>
                         <td><?php echo $no++ ?></td>
@@ -56,12 +56,16 @@
                         <td><?php echo $data['keterangan'] ?></td>
                         <td><?php echo $data['nama_ruangan'] ?></td>
                         <td><div class='btn-group'>
-                        <a href="<?php echo base_url('barangrusak/ubah/'.$data['id_barang']) ?>" class='btn btn-warning'>Ubah</a> &nbsp;
+                        <a
+                                class='btn btn-warning'
+                                href='<?= site_url("usulpemusnahan/ubah/". $data['id_barang']) ?>'
+                                onclick="return confirm('Barang Sudah Dimusnahkan ?')">Telah Dimusnahkan</a>&nbsp;
                         <a
                                 class='btn btn-danger'
-                                href='<?= site_url("barangrusak/hapus/". $data['id_barang']) ?>'
-                                onclick="return confirm('Ingin Mengusulkan Pemusnahan pada Data Ini?')">Usul Pemusnahan</a>
-                        </td>
+                                href='<?= site_url("usulpemusnahan/hapus/". $data['id_barang']) ?>'
+                                onclick="return confirm('Ingin Membatalkan Mengusulkan Pemusnahan pada Data Ini ?')">Batalkan Pemusnahan</a>
+                        </div>
+                            </td>
                         </tr>
                <?php
                    endforeach;

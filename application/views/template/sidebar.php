@@ -56,7 +56,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="<?php echo base_url('mutasikeluar');?>">
                     <i class="fas fa-upload"></i>
                     <span>Barang Keluar</span></a>
             </li>
@@ -91,14 +91,20 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Usul Pemushanahan Barang
+                Pemushanahan Barang
             </div>
 
 
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?php echo base_url('usulpemusnahan');?>">
+                    <i class="fas fa-edit"></i>
+                    <span>Usul Pemusnahan Barang</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('barangdimusnahkan');?>">
                     <i class="fas fa-trash-alt"></i>
-                    <span>Pemusnahan Barang</span></a>
+                    <span>Barang Dimusnahkan</span></a>
             </li>
 
             <!-- Divider -->

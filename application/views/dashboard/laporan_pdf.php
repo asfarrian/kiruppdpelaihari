@@ -42,35 +42,40 @@
     </style>
 </head>
 <body>
-    <h4 class="table-font" style="text-align: center;">KARTU INVENTARIS RUANGAN</h4>
+    <h4 class="table-font" style="text-align: center;">KARTU INVENTARIS BARANG <br> ALAT KANTOR DAN RUMAH TANGGA</h4>
 
     <table class="judul-font">
         <tr>
+            <td>SKPD</td>
+            <td>:</td>
+            <td>4.05.01.03. - UPPD PELAIHARI</td>
+        </tr>
+        <tr>
+            <td>KABUPATEN/KOTA</td>
+            <td>:</td>
+            <td>BANJARBARU</td>
+        </tr>
+        <tr>
             <td>PROVINSI</td>
             <td>:</td>
-            <td>KALIMANTAN SELATAN</td>
-        </tr>
-        <tr>
-            <td>UPB</td>
-            <td>:</td>
-            <td>UPPD PELAIHARI</td>
-        </tr>
-        <tr>
-            <td>RUANGAN</td>
-            <td>:</td>
-            <td><?= strtoupper($ruangan->nama_ruangan) ?></td>
+            <td>KALIMANTAN SELATAN  </td>
     </table>
     
     <table class="table table-bordered table-striped border text-td judul-font">
         <thead>
             <tr>
-                <th class="border" scope="col" width="25px">No</th>
+                <th class="border" scope="col" width="25px">No< Urut/th>
                 <th class="border" scope="col" width="75px">Kode<br>Barang</th>
                 <th class="border" scope="col" width="140px">Jenis Barang <br>/ Nama Barang</th>
+                <th class="border" scope="col">Nomor<br>Register</th>
                 <th class="border" scope="col" width="220px">Merk / Type</th>
                 <th class="border" scope="col" width="75px">Ukuran / CC </th>
-                <th class="border" scope="col">Thn Beli</th>
-                <th class="border" scope="col">Keterangan</th>
+                <th class="border" scope="col">Bahan</th>
+                <th class="border" scope="col">Tahun<br> Pembelian</th>
+                <th class="border" scope="col">Asal Usul<br>Cara</th>
+                <th class="border" scope="col">Kondisi</th>
+                <th class="border" scope="col">Harga</th>
+                <th class="border" scope="col" width="140px">Keterangan</th>
             </tr>
             <tr>
                 <th class="border">1</th>
@@ -80,18 +85,28 @@
                 <th class="border">5</th>
                 <th class="border">6</th>
                 <th class="border">7</th>
+                <th class="border">8</th>
+                <th class="border">9</th>
+                <th class="border">10</th>
+                <th class="border">11</th>
+                <th class="border">12</th>
             </tr>
         </thead>
         <tbody>
-            <?php $no = 1; foreach ($laporanKir as $kir) { ?>
+            <?php $no = 1; foreach ($dashboard as $data) { ?>
                 <tr>
                     <td class="border"><?= $no++ ?></td>
-                    <td class="border"><?= $kir['kode_barang'] ?></td>
-                    <td class="border"><?= $kir['nama_barang'] ?></td>
-                    <td class="border"><?= $kir['merk'] ?></td>
-                    <td class="border"><?= $kir['ukuran'] ?></td>
-                    <td class="border"><?= $kir['tahun_pembelian'] ?></td>
-                    <td class="border"><?= $kir['keterangan'] ?></td>
+                    <td class="border"><?= $data['kode_barang'] ?></td>
+                    <td class="border"><?= $data['nama_barang'] ?></td>
+                    <td class="border"><?= $data['nomor_registrasi'] ?></td>
+                    <td class="border"><?= $data['merk'] ?></td>
+                    <td class="border"><?= $data['ukuran'] ?></td>
+                    <td class="border"><?= $data['bahan'] ?></td>
+                    <td class="border"><?= $data['tahun_pembelian'] ?></td>
+                    <td class="border"><?= $data['asal_usul'] ?></td>
+                    <td class="border"><?= $data['kondisi'] ?></td>
+                    <td class="border"><?= $data['harga'] ?></td>
+                    <td class="border"><?= $data['keterangan'] ?></td>
                 </tr>
             <?php } ?>
         </tbody>
@@ -111,7 +126,7 @@
                 <td></td>
             </tr>
             <tr class="spaceUnder">
-                <td style="padding-bottom: 70px;"><b>UPPD PELAIHARI</b></td>
+                <td style="padding-bottom: 70px;"><b>KEPALA UPPD PELAIHARI</b></td>
                 <td style="padding-bottom: 70px;"><br></td>
                 <td style="padding-bottom: 70px;"><b>PEMANFAATAN BARANG <br> MILIK DAERAH</b></td>
             </tr>

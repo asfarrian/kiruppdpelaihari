@@ -1,5 +1,5 @@
 <?php
-class Barangrusak_model extends CI_Model
+class Barangdimusnahkan_model extends CI_Model
 {
 	public function get_data($id_barang='')
     {
@@ -24,44 +24,47 @@ class Barangrusak_model extends CI_Model
         }
     }
 
-
-    public function lihat_barangrusak_by_kondisi($kondisi, $status)
+    public function lihat_barangdimusnahkan_by_status($status)
     {
-        $query = $this->db->select('*')
-                            ->from('tb_inventaris')
+        $query = $this->db->select('tb_pemusnahan.*, tb_inventaris.*, tb_ruangan.*')
+                            ->from('tb_pemusnahan')
+                            ->join('tb_inventaris', 'tb_inventaris.id_barang = tb_pemusnahan.id_barang', 'left')
                             ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
-                            ->where(['tb_inventaris.kondisi' => $kondisi])
                             ->where(['tb_inventaris.status' => $status])
                             ->get()->result_array();
 
         return $query;
     }
 
-    public function get_data_byid($id_barang){
-        return $this->db->get_where("tb_inventaris", array('id_barang'=>$id_barang))->row(); //->row_array() memanggil 1 data dengan array, cara panggil $namaVariable['nama_kolom_tabel']
+    public function move_data($id_barang){
+        $datapemusnahan = [
+            'id_barang'=> $id_barang,
+            'tahun_anggaran'=> $this->input->post('tahun_anggaran'),
+            'cara_pemusnahan'=> $this->input->post('cara_pemusnahan')
+        ];
+        $this->db->insert("tb_pemusnahan", $datapemusnahan);
 
+        $dataInventaris = [
+            'status'=> 'Barang Telah Dimusnahkan'
+        ];
+
+        $this->db->update('tb_inventaris', $dataInventaris, ['id_barang' => $id_barang]);
+
+        if($this->db->affected_rows()>0){
+            $this->session->set_flashdata("pesan", "Data ruangan berhasil disimpan!");
+        }
     }
 
-
-    public function update_data($id){
-        $data = ['kondisi'=> $this->input->post('kondisi')];
-		$this->db->where('id_barang', $id);
-		$this->db->update('tb_inventaris', $data);
-		if($this->db->affected_rows()>0){
-			$this->session->set_flashdata("pesan", "Data ruangan berhasil diperbaharui!");
-		}
-	}
 
     public function delete_data($id_barang)
     {
         $dataInventaris = [
-            'status'=>'Usul Pemusnahan'
+            'status'=>'Unit Pelayanan Pendapatan Daerah Pelaihari'
         ];
         $this->db->update('tb_inventaris', $dataInventaris, ['id_barang' => $id_barang]);
 
         if($this->db->affected_rows() > 0)
             $this->session->set_flashdata("pesan", "Data ruangan berhasil dihapus!");
     }
-
 
 }

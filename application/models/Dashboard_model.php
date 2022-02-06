@@ -46,25 +46,44 @@ class Dashboard_model extends CI_Model
         return $query;
     }
 
-	public function update_data($id)
+    public function update_data($id_barang){
+        $dataInventaris = [
+            'kode_barang'=> $this->input->post('kode_barang'),
+            'nama_barang'=> $this->input->post('nama_barang'),
+            'merk'=> $this->input->post('merk'),
+            'nomor_registrasi'=> $this->input->post('nomor_registrasi'),
+            'ukuran'=> $this->input->post('ukuran'),
+            'bahan'=> $this->input->post('bahan'),
+            'tahun_pembelian'=> $this->input->post('tahun_pembelian'),
+            'asal_usul'=> $this->input->post('asal_usul'),
+            'kondisi'=> $this->input->post('kondisi'),
+            'harga'=> $this->input->post('harga'),
+            'keterangan'=> $this->input->post('keterangan'),
+            'id_ruangan'=> $this->input->post('ruangan')
+        ];
+        $this->db->update('tb_inventaris', $dataInventaris, ['id_barang' => $id_barang]);
+        if($this->db->affected_rows()>0){
+            $this->session->set_flashdata("pesan", "Data instansi berhasil diperbaharui!");
+        }
+    }
+
+    public function move_Data($id_barang)
     {
-		$data = ['kode_barang'=> $this->input->post('kode_barang')];
-        $data = ['nama_barang'=> $this->input->post('nama_barang')];
-        $data = ['merk'=> $this->input->post('merk')];
-        $data = ['nomor_registrasi'=> $this->input->post('nomor_registrasi')];
-        $data = ['ukuran'=> $this->input->post('ukuran')];
-        $data = ['bahan'=> $this->input->post('bahan')];
-        $data = ['tahun_pembelian'=> $this->input->post('tahun_pembelian')];
-        $data = ['asal_usul'=> $this->input->post('asal_usul')];
-        $data = ['kondisi'=> $this->input->post('kondisi')];
-        $data = ['harga'=> $this->input->post('harga')];
-        $data = ['keterangan'=> $this->input->post('keterangan')];
-        $data = ['id_ruangan'=> $this->input->post('ruangan')];
-		$this->db->where('id_barang', $id);
-		$this->db->update('tb_inventaris', $data);
-		if($this->db->affected_rows()>0){
-			$this->session->set_flashdata("pesan", "Data ruangan berhasil diperbaharui!");
-		}
-	}
+        $dataMutasikeluar = [
+            'id_barang'=> $id_barang,
+            'id_instansi'=> $this->input->post('id_instansi'),
+            'tahun_anggaran'=> $this->input->post('tahun_anggaran')
+            ];
+            $this->db->insert("tb_mutasikeluar", $dataMutasikeluar);
+            
+        $dataInventaris = [
+            'status'=>'Mutasi Barang Keluar'
+            ];
+            $this->db->update('tb_inventaris', $dataInventaris, ['id_barang' => $id_barang]);
+
+            if($this->db->affected_rows()>0){
+                $this->session->set_flashdata("pesan", "Data ruangan berhasil disimpan!");
+            }
+        }
 
 }

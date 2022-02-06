@@ -32,18 +32,24 @@ class Mutasimasuk_model extends CI_Model
     }
 
     public function get_data_byid($id){
-        
-        $query = $this->db->select('tb_mutasimasuk.*, tb_inventaris.id_barang, tb_inventaris.nama_barang, 
-                                        tb_inventaris.merk, tb_inventaris.ukuran, tb_instansi.nama_instansi,
-                                        tb_inventaris.keterangan, tb_ruangan.nama_ruangan')
+        $query = $this->db->select(
+                                    'tb_mutasimasuk.*,
+
+                                    tb_inventaris.id_barang,
+                                    tb_inventaris.id_ruangan,
+                                    tb_inventaris.nama_barang,
+                                    tb_inventaris.merk,
+                                    tb_inventaris.ukuran,
+                                    tb_inventaris.keterangan,
+                                    tb_instansi.nama_instansi,
+                                    tb_ruangan.nama_ruangan')
                                 ->from('tb_mutasimasuk')
                                 ->join('tb_instansi', 'tb_instansi.id_instansi = tb_mutasimasuk.id_instansi', 'left')
                                 ->join('tb_inventaris', 'tb_inventaris.id_barang = tb_mutasimasuk.id_barang', 'left')
                                 ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
                                 ->where(['tb_mutasimasuk.id_barangmasuk' => $id])
-                                ->get()->row_array();
+                                ->get()->row_array(); //->row_array() memanggil 1 data dengan array, cara panggil $namaVariable['nama_kolom_tabel']
             return $query;
-        
     }
 
     public function cari($tahun_anggaran)
@@ -80,8 +86,6 @@ class Mutasimasuk_model extends CI_Model
 
         $data = [
             'id_barang'=>$kodetampil,
-            'no_bast'=> $this->input->post('no_bast'),
-            'tanggal'=> $this->input->post('tanggal'),
             'id_instansi'=> $this->input->post('id_instansi'),
             'tahun_anggaran'=> $this->input->post('tahun_anggaran')
         ];
@@ -92,6 +96,7 @@ class Mutasimasuk_model extends CI_Model
             'nama_barang'=> $this->input->post('nama_barang'),
             'merk'=> $this->input->post('merk'),
             'ukuran'=> $this->input->post('ukuran'),
+            'status'=>'Unit Pelayanan Pendapatan Daerah Pelaihari',
             'id_ruangan'=> $this->input->post('id_ruangan')
         ];
         $this->db->insert("tb_inventaris", $data2);
@@ -102,38 +107,33 @@ class Mutasimasuk_model extends CI_Model
     }
 
     //Edit Data pada Mutasi Barang Masuk
-    public function update_data($id){
-        $data = array(
-            'no_bast'=> $this->input->post('no_bast'),
-            'tanggal'=> $this->input->post('tanggal'),
+    public function update_data($id_barangmasuk, $id_barang)
+    {
+        $dataMutasiMasuk = [
             'id_instansi'=> $this->input->post('id_instansi'),
             'tahun_anggaran'=> $this->input->post('tahun_anggaran')
-        );
+        ];
 
-        $data2 = [
-            'id_barang'=>$kodetampil,
+        $dataInventaris = [
             'nama_barang'=> $this->input->post('nama_barang'),
             'merk'=> $this->input->post('merk'),
             'ukuran'=> $this->input->post('ukuran'),
             'id_ruangan'=> $this->input->post('id_ruangan')
         ];
 
-        $this->db->where('id_barang', $id);
-        $this->db->update('tb_mutasimasuk', $data);
-        $this->db->update('tb_inventaris', $data2);
-        if($this->db->affected_rows()>0){
+        $this->db->update('tb_mutasimasuk', $dataMutasiMasuk, ['id_barangmasuk' => $id_barangmasuk]);
+        $this->db->update('tb_inventaris', $dataInventaris, ['id_barang' => $id_barang]);
+
+        if($this->db->affected_rows() > 0)
             $this->session->set_flashdata("pesan", "Data barang berhasil diperbaharui!");
-        }
     }
 
-    public function delete_data($id){
-        $this->db->where('tb.mutasimasuk.id_barang=tb_inventaris.id_barang');
-        $this->db->where('tb_mutasimasuk.id_barangmasuk', $id);
-        $this->db->delete(array('tb_mutasimasuk', 'tb_inventaris'));
-        if($this->db->affected_rows()>0){
+    public function delete_data($id_barangmasuk, $id_barang)
+    {
+        $this->db->delete('tb_mutasimasuk', ['id_barangmasuk' => $id_barangmasuk]);
+        $this->db->delete('tb_inventaris', ['id_barang' => $id_barang]);
+
+        if($this->db->affected_rows() > 0)
             $this->session->set_flashdata("pesan", "Data ruangan berhasil dihapus!");
-        }
     }
-
-
 }

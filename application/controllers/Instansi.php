@@ -1,5 +1,7 @@
 <?php
-	class Instansi extends CI_Controller{
+	include_once(APPPATH.'controllers/Controller.php');
+	class Instansi extends Controller
+	{
 		function __construct()
 		{
 			parent::__construct();
