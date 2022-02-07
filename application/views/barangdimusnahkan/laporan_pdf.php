@@ -40,10 +40,11 @@
             width : 980px;
             margin : 0 auto;
             background-color: #fff;
-            height : 200px padding:20px;
+            height : 200px;
+            padding: 20px;
         }
         .tablekop {
-            border-bottom: 5px solid #000; 
+            border-bottom: 5px solid #000;
             padding : 2px
         }
         .tengah {
@@ -58,7 +59,11 @@
     <div class="rangkasurat">
         <table class="tablekop" width="100%">
             <tr>
-                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Coat_of_arms_of_South_Kalimantan.svg/800px-Coat_of_arms_of_South_Kalimantan.svg.png" width="140px"></td>
+                <?php
+                    $fileContent = file_get_contents(base_url('assets/img/Kalsel.png'));
+                    $base64 = 'data:image/' . 'png' . ';base64,' . base64_encode($fileContent);
+                ?>
+                <td><img src="<?= $base64 ?>" width="140px"></td>
                 <td class="tengah">
                     <h3>PEMERINTAH PROVINSI KALIMANTAN SELATAN</h3>
                     <h3>BADAN KEUANGAN DAERAH</h3>

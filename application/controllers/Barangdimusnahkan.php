@@ -1,10 +1,15 @@
 <?php
 	include_once(APPPATH.'controllers/Controller.php');
+
 	class Barangdimusnahkan extends Controller
 	{
 		function __construct()
 		{
 			parent::__construct();
+
+			if ($this->session->userdata('status') != 'login')
+				redirect('Login');
+
 			$this->load->model(array('barangdimusnahkan_model', 'ruangan_model', 'instansi_model', 'tahunanggaran_model'));
 		}
 
@@ -52,8 +57,10 @@
 			$data['pemusnahan'] = $this->barangdimusnahkan_model->cari($id_tahun);
 			$this->load->library('pdf');
 			$this->pdf->setPaper('Folio', 'landscape');
+
 			$this->pdf->loadHTML("img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Coat_of_arms_of_South_Kalimantan.svg/800px-Coat_of_arms_of_South_Kalimantan.svg'");
 			$this->pdf->filename = "berita-acara-pemusnahan.pdf";
+
 			$this->pdf->load_view('Barangdimusnahkan/laporan_pdf', $data);
 		}
 

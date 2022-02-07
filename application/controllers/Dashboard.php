@@ -5,6 +5,10 @@
 		function __construct()
 		{
 			parent::__construct();
+
+			if ($this->session->userdata('status') != 'login')
+				redirect('Login');
+
 			$this->load->model(array('dashboard_model', 'ruangan_model', 'instansi_model', 'tahunanggaran_model'));
 		}
 

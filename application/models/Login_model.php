@@ -1,45 +1,38 @@
 <?php
-	class Login_model extends CI_Model{
-		public function get_data(){
-			$query = "select *, (select count(*) from tb_inventaris where tb_inventaris.id_ruangan = tb_ruangan.id_ruangan) as jumlah from tb_ruangan";
-			return $this->db->query($query)->result();
-		}
+	class Login_model extends CI_Model
+	{
+	public function login($nip, $password)
+    {
+        $this->db->where('nip', $nip);
+        $query = $this->db->get('tb_login');
 
-		public function get_data_byid($id){
-			return $this->db->get_where("tb_ruangan", array('id_ruangan'=>$id))->row();
-		}
+        if ($query->num_rows() > 0) {
+            $hash = $query->row('password');
 
-		public function insert_data(){
-			$data = [
-                'nama_ruangan'=> $this->input->post('nama')
-			];
-			$this->db->insert("tb_ruangan", $data);
-			if($this->db->affected_rows()>0){
-				$this->session->set_flashdata("pesan", "Data ruangan berhasil disimpan!");
-			}
-		}
+            if (password_verify($password, $hash)) {
+                foreach ($query->result() as $x) {
+                    $sess = [
+                        "id" => $x->id,
+                        'nip' => $x->nip,
+						"nama_pegawai" => $x->nama_pegawai,
+						"jabatan" => $x->jabatan,
+						"username" => $x->username,
+                        'level_pengguna' => $x->level_pengguna,
+                        "status" => "login",
+					];
+                }
 
-		public function delete_data($id){
-			$this->db->where('id_ruangan', $id);
-			$this->db->delete('tb_ruangan');
-			if($this->db->affected_rows()>0){
-				$this->session->set_flashdata("pesan", "Data ruangan berhasil dihapus!");
-			}
-		}
+                $this->session->set_userdata($sess);
 
-		public function update_data($id){
-			$data = ['nama_ruangan'=> $this->input->post('nama')];
-			$this->db->where('id_ruangan', $id);
-			$this->db->update('tb_ruangan', $data);
-			if($this->db->affected_rows()>0){
-				$this->session->set_flashdata("pesan", "Data ruangan berhasil diperbaharui!");
-			}
-		}
-
-		public function get_data_by_id($id)
-		{
-			$query = "select * from tb_ruangan where id_ruangan = $id";
-			return $this->db->query($query)->row();
-		}
+                redirect('Dashboard');
+            } else {
+                $this->session->set_flashdata('info', 'Nomor Induk Pegawai dan Password Anda Salah !');
+                redirect('Login');
+            }
+        } else {
+            $this->session->set_flashdata('info', 'Nomor Induk Pegawai tidak terdaftar !');
+            redirect('Login');
+        }
+    }
 
 	}

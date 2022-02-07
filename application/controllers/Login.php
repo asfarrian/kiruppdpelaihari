@@ -5,15 +5,30 @@
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model('ruangan_model');
+
+			$this->load->model('Login_model');
 		}
 
 		public function index()
-		{//localhost/simon_pkl/dashboard
+		{
 			$this->load->view('template/sidebarlogin');
             $this->load->view('template/headerlogin');
             $this->load->view('login/view_data');
             $this->load->view('template/footerlogin');
+		}
+
+		public function attempt()
+		{
+			$nip = $this->input->post('nip');
+			$password = $this->input->post('password');
+
+			$this->Login_model->login($nip, $password);
+		}
+
+		public function logout()
+		{
+			$this->session->sess_destroy();
+			redirect('Login');
 		}
 
 	}
