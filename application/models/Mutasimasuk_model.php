@@ -42,27 +42,31 @@ class Mutasimasuk_model extends CI_Model
                                     tb_inventaris.ukuran,
                                     tb_inventaris.keterangan,
                                     tb_instansi.nama_instansi,
-                                    tb_ruangan.nama_ruangan')
+                                    tb_ruangan.nama_ruangan,
+                                    tb_tahunanggaran.*')
                                 ->from('tb_mutasimasuk')
                                 ->join('tb_instansi', 'tb_instansi.id_instansi = tb_mutasimasuk.id_instansi', 'left')
                                 ->join('tb_inventaris', 'tb_inventaris.id_barang = tb_mutasimasuk.id_barang', 'left')
                                 ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
+                                ->join('tb_tahunanggaran', 'tb_tahunanggaran.id_tahun = tb_mutasimasuk.id_tahun', 'left')
                                 ->where(['tb_mutasimasuk.id_barangmasuk' => $id])
                                 ->get()->row_array(); //->row_array() memanggil 1 data dengan array, cara panggil $namaVariable['nama_kolom_tabel']
             return $query;
     }
 
-    public function cari($tahun_anggaran)
+   
+    public function cari($id_tahun)
     {
         $query = $this->db->select('tb_mutasimasuk.*, tb_inventaris.id_barang, tb_inventaris.nama_barang, 
-                                        tb_inventaris.merk, tb_inventaris.ukuran, tb_instansi.nama_instansi,
-                                        tb_inventaris.keterangan, tb_ruangan.nama_ruangan')
-                          ->from('tb_mutasimasuk')
-                          ->join('tb_instansi', 'tb_instansi.id_instansi = tb_mutasimasuk.id_instansi', 'left')
-                          ->join('tb_inventaris', 'tb_inventaris.id_barang = tb_mutasimasuk.id_barang', 'left')
-                          ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
-                          ->like('tahun_anggaran', $tahun_anggaran)
-                          ->get()->result_array();
+        tb_inventaris.merk, tb_inventaris.ukuran, tb_instansi.nama_instansi,
+        tb_inventaris.keterangan, tb_ruangan.nama_ruangan, tb_tahunanggaran.*')
+        ->from('tb_mutasimasuk')
+        ->join('tb_instansi', 'tb_instansi.id_instansi = tb_mutasimasuk.id_instansi', 'left')
+        ->join('tb_inventaris', 'tb_inventaris.id_barang = tb_mutasimasuk.id_barang', 'left')
+        ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
+        ->join('tb_tahunanggaran', 'tb_tahunanggaran.id_tahun = tb_mutasimasuk.id_tahun', 'left')
+            ->where(['tb_mutasimasuk.id_tahun' => $id_tahun])
+            ->get()->result_array();
 
         return $query;
     }
@@ -87,7 +91,7 @@ class Mutasimasuk_model extends CI_Model
         $data = [
             'id_barang'=>$kodetampil,
             'id_instansi'=> $this->input->post('id_instansi'),
-            'tahun_anggaran'=> $this->input->post('tahun_anggaran')
+            'id_tahun'=> $this->input->post('id_tahun')
         ];
         $this->db->insert("tb_mutasimasuk", $data);
         
@@ -111,7 +115,7 @@ class Mutasimasuk_model extends CI_Model
     {
         $dataMutasiMasuk = [
             'id_instansi'=> $this->input->post('id_instansi'),
-            'tahun_anggaran'=> $this->input->post('tahun_anggaran')
+            'id_tahun'=> $this->input->post('id_tahun')
         ];
 
         $dataInventaris = [

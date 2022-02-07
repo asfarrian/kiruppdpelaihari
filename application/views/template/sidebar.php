@@ -30,7 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -66,7 +66,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Rekab
+                Kartu Inventaris
             </div>
 
             <li class="nav-item">
@@ -79,11 +79,26 @@
                      <i class="fas fa-clipboard-list"></i>
                     <span>Kartu Inventaris Ruangan</span></a>
             </li>
+
+            <div class="sidebar-heading">
+                Kondisi Barang
+            </div>
+
             <!-- Nav Item - Ruangan -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('barangbaik');?>">
+                <i class="far fa-check-circle"></i>
+                <span>Baik</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('barangrusakringan');?>">
+                <i class="fas fa-screwdriver"></i>
+                <span>Rusak Ringan</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('barangrusak');?>">
                 <i class="fas fa-times"></i>
-                <span>Barang Rusak Berat</span></a>
+                <span>Rusak Berat</span></a>
             </li>
 
             <!-- Divider -->
@@ -104,7 +119,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('barangdimusnahkan');?>">
                     <i class="fas fa-trash-alt"></i>
-                    <span>Barang Dimusnahkan</span></a>
+                    <span>Barang Telah Dimusnahkan</span></a>
             </li>
 
             <!-- Divider -->
@@ -112,7 +127,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Lainnya
+                Master
             </div>
 
             <!-- Nav Item - Kondisi -->
@@ -126,6 +141,13 @@
                 <a class="nav-link" href="<?php echo base_url('ruangan');?>">
                 <i class="fas fa-building"></i>
                     <span>Ruangan</span></a>
+            </li>
+
+            <!-- Nav Item - Kondisi -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('tahunanggaran');?>">
+                <i class="fas fa-calendar-week"></i>
+                    <span>Tahun Anggaran</span></a>
             </li>
 
             <!-- Nav Item - Akun -->

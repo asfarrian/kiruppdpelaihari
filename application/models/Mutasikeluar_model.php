@@ -29,15 +29,16 @@ class Mutasikeluar_model extends CI_Model
 
 
 
-    public function cari($tahun_anggaran)
+    public function cari($id_tahun)
     {
-        $query = $this->db->select('tb_mutasikeluar.*, tb_inventaris.*, tb_ruangan.nama_ruangan, tb_instansi.nama_instansi')
+        $query = $this->db->select('tb_mutasikeluar.*, tb_inventaris.*, tb_tahunanggaran.*, tb_ruangan.nama_ruangan, tb_instansi.nama_instansi')
                           ->from('tb_mutasikeluar')
                           ->join('tb_instansi', 'tb_instansi.id_instansi = tb_mutasikeluar.id_instansi', 'left')
                           ->join('tb_inventaris', 'tb_inventaris.id_barang = tb_mutasikeluar.id_barang', 'left')
+                          ->join('tb_tahunanggaran', 'tb_tahunanggaran.id_tahun = tb_mutasikeluar.id_tahun', 'left')
                           ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
-                          ->like('tahun_anggaran', $tahun_anggaran)
-                          ->get()->result_array();
+                          ->where(['tb_mutasikeluar.id_tahun' => $id_tahun])
+                        ->get()->result_array();
 
         return $query;
     }
@@ -45,6 +46,7 @@ class Mutasikeluar_model extends CI_Model
     public function get_data_byid($id_barangkeluar){
         $query = $this->db->select(
                                     'tb_mutasikeluar.*,
+                                    tb_tahunanggaran.*,
                                     tb_inventaris.id_barang,
                                     tb_inventaris.id_ruangan,
                                     tb_inventaris.nama_barang,
@@ -56,6 +58,7 @@ class Mutasikeluar_model extends CI_Model
                                 ->from('tb_mutasikeluar')
                                 ->join('tb_instansi', 'tb_instansi.id_instansi = tb_mutasikeluar.id_instansi', 'left')
                                 ->join('tb_inventaris', 'tb_inventaris.id_barang = tb_mutasikeluar.id_barang', 'left')
+                                ->join('tb_tahunanggaran', 'tb_tahunanggaran.id_tahun = tb_mutasikeluar.id_tahun', 'left')
                                 ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
                                 ->where(['tb_mutasikeluar.id_barangkeluar' => $id_barangkeluar])
                                 ->get()->row_array(); //->row_array() memanggil 1 data dengan array, cara panggil $namaVariable['nama_kolom_tabel']
@@ -66,7 +69,7 @@ class Mutasikeluar_model extends CI_Model
     public function update_data($id_barangkeluar){
         $dataInventaris = [
             'id_instansi'=> $this->input->post('id_instansi'),
-            'tahun_anggaran'=> $this->input->post('tahun_anggaran')
+            'id_tahun'=> $this->input->post('id_tahun')
         ];
         $this->db->update('tb_mutasikeluar', $dataInventaris, ['id_barangkeluar' => $id_barangkeluar]);
         if($this->db->affected_rows()>0){

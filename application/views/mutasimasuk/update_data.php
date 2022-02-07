@@ -52,7 +52,7 @@
                             <div class="form-group">
 								<label for="nama">Barang Dari</label>
 								<select name="id_instansi" required class="form-control">
-									<option value="">Pilih Instansi</option>
+									<option value="">--Pilih Instansi--</option>
 									<?php foreach($instansi as $row) { ?>
 										<option
 											value="<?= $row->id_instansi ?>"
@@ -61,19 +61,22 @@
 									<?php } ?>
 								</select>
                             </div>
-                            <div class="form-group">
+							<div class="form-group">
 								<label for="nama">Tahun Anggaran</label>
-								<select name="tahun_anggaran" required class="form-control">
-									<option value="" >Pilih Tahun</option>
-									<?php foreach($tahun as $thn) { ?>
-										<option value="<?= $thn ?>" <?= $thn == $mutasimasuk['tahun_anggaran'] ? 'selected': '' ?>><?= $thn ?></option>
+								<select name="id_tahun" required class="form-control">
+									<option value="">--Pilih Tahun--</option>
+									<?php foreach($tahunanggaran as $row) { ?>
+										<option
+											value="<?= $row->id_tahun ?>"
+											<?= $row->id_tahun == $mutasimasuk['id_tahun'] ? 'selected' : '' ?> >
+												<?= $row->nama_tahun ?></option>
 									<?php } ?>
 								</select>
-							</div>
+                            </div>
                             <div class="form-group">
 								<label for="nama">Ruangan</label>
 								<select name="id_ruangan" required class="form-control">
-									<option value="">Pilih Kelas</option>
+									<option value="">--Pilih Kelas--</option>
 									<?php foreach($ruangan as $row) { ?>
 										<option value="<?= $row->id_ruangan ?>" <?= $row->id_ruangan == $mutasimasuk['id_ruangan'] ? 'selected': '' ?>> <?= $row->nama_ruangan ?> </option>
 									<?php } ?>

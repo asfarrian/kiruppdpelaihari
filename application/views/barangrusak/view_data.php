@@ -4,7 +4,7 @@
                    <!-- Page Heading -->
                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Inventaris Barang Rusak Berat</h1>
-                        <a href="<?php echo base_url('ruangan/tambah');?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="<?php echo base_url('barangrusak/laporan_pdf/');?>" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
                                 class="fas fa-print fa-sm text-white-50"></i>  Cetak  </a>
                     </div>
 

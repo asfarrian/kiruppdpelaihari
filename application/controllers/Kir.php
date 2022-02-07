@@ -27,12 +27,13 @@
 		}
 
 
-		public function ubah($id){
+		public function ubah($id_barang)
+		{
 			if(isset($_POST['ubah'])){
-				$this->kir_model->update_data($id);
+				$this->mutasimasuk_model->update_data($id_barang);
 				redirect('kir');
 			}else{
-				$data['kir'] = $this->kir_model->get_lihat_kir($id);
+				$data['kir'] = $this->kir_model->get_data_byid($id_barang);
 				$data['ruangan'] = $this->ruangan_model->get_data();
 				$this->load->view('template/sidebar');
 				$this->load->view('template/header');

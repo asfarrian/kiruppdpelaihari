@@ -47,7 +47,7 @@
     <table class="table table-bordered table-striped border text-td judul-font">
         <thead>
             <tr>
-                <th class="border" scope="col" width="25px">No< Urut/th>
+                <th class="border" scope="col" width="25px" height="70px">No Urut</th>
                 <th class="border" scope="col" width="90px">Kode<br>Barang</th>
                 <th class="border" scope="col" width="180px">Jenis Barang <br>/ Nama Barang</th>
                 <th class="border" scope="col">Nomor<br>Register</th>
@@ -78,7 +78,7 @@
         <tbody>
             <?php $no = 1; foreach ($usulpemusnahan as $data) { ?>
                 <tr>
-                    <td class="border"><?= $no++ ?></td>
+                    <td class="border" height="30px"><?= $no++ ?></td>
                     <td class="border"><?= $data['kode_barang'] ?></td>
                     <td class="border"><?= $data['nama_barang'] ?></td>
                     <td class="border"><?= $data['nomor_registrasi'] ?></td>

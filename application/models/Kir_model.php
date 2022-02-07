@@ -19,25 +19,28 @@ class Kir_model extends CI_Model
         }
     }
 
-	public function update_data($id){
-		$data = ['kode_barang'=> $this->input->post('kode_barang')];
-        $data = ['nama_barang'=> $this->input->post('nama_barang')];
-        $data = ['merk'=> $this->input->post('merk')];
-        $data = ['nomor_registrasi'=> $this->input->post('nomor_registrasi')];
-        $data = ['ukuran'=> $this->input->post('ukuran')];
-        $data = ['bahan'=> $this->input->post('bahan')];
-        $data = ['tahun_pembelian'=> $this->input->post('tahun_pembelian')];
-        $data = ['asal_usul'=> $this->input->post('asal_usul')];
-        $data = ['kondisi'=> $this->input->post('kondisi')];
-        $data = ['harga'=> $this->input->post('harga')];
-        $data = ['keterangan'=> $this->input->post('keterangan')];
-        $data = ['id_ruangan'=> $this->input->post('ruangan')];
-		$this->db->where('id_barang', $id);
-		$this->db->update('tb_inventaris', $data);
-		if($this->db->affected_rows()>0){
-			$this->session->set_flashdata("pesan", "Data ruangan berhasil diperbaharui!");
-		}
-	}
+    public function get_data_byid($id_barang){
+        $query = $this->db->select(
+                                    'tb_inventaris.*,
+                                    tb_ruangan.nama_ruangan,')
+                                ->from('tb_inventaris')
+                                ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
+                                ->where(['tb_inventaris.id_barang' => $id_barang])
+                                ->get()->row_array(); //->row_array() memanggil 1 data dengan array, cara panggil $namaVariable['nama_kolom_tabel']
+            return $query;
+    }
+
+    public function update_data($id_barang)
+    {
+        $dataInventaris = [
+            'id_ruangan'=> $this->input->post('id_ruangan')
+        ];
+
+        $this->db->update('tb_inventaris', $dataInventaris, ['id_barang' => $id_barang]);
+
+        if($this->db->affected_rows() > 0)
+            $this->session->set_flashdata("pesan", "Data barang berhasil diperbaharui!");
+    }
 
     public function cari($id_ruangan, $group_by = [])
     {

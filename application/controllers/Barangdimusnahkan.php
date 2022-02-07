@@ -5,14 +5,24 @@
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model(array('barangdimusnahkan_model', 'ruangan_model', 'instansi_model'));
+			$this->load->model(array('barangdimusnahkan_model', 'ruangan_model', 'instansi_model', 'tahunanggaran_model'));
 		}
 
 		public function index()
 		{
-			$data['barangdimusnahkan']=$this->barangdimusnahkan_model->lihat_barangdimusnahkan_by_status('Barang Telah Dimusnahkan');
+			$tahun_anggaran = $this->input->get('id_tahun', TRUE);
 
-			$this->template('barangdimusnahkan/view_data', $data);
+			if ($tahun_anggaran) {
+				$data['barangdimusnahkan'] = $this->barangdimusnahkan_model->cari($tahun_anggaran);
+				$data['selected_pemusnahan'] = $tahun_anggaran;
+			} else {
+				$data['barangdimusnahkan']=$this->barangdimusnahkan_model;
+			}
+			$data['tahunanggaran'] = $this->tahunanggaran_model->get_data();
+			$this->load->view('template/sidebar');
+			$this->load->view('template/header');
+			$this->load->view('barangdimusnahkan/view_data', $data);
+			$this->load->view('template/footer');
 		}
 
 		public function hapus($id_barang)
@@ -37,13 +47,14 @@
 		}
 
 
-		public function laporan_pdf()
+		public function laporan_pdf($id_tahun)
 		{
-			$data['usulpemusnahan']=$this->usulpemusnahan_model->lihat_usulpemusnahan_by_status('Usul Pemusnahan');
+			$data['pemusnahan'] = $this->barangdimusnahkan_model->cari($id_tahun);
 			$this->load->library('pdf');
 			$this->pdf->setPaper('Folio', 'landscape');
-			$this->pdf->filename = "UsulPemusnahan-UPPD PLH.pdf";
-			$this->pdf->load_view('usulpemusnahan/laporan_pdf', $data);
+			$this->pdf->loadHTML("img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Coat_of_arms_of_South_Kalimantan.svg/800px-Coat_of_arms_of_South_Kalimantan.svg'");
+			$this->pdf->filename = "berita-acara-pemusnahan.pdf";
+			$this->pdf->load_view('Barangdimusnahkan/laporan_pdf', $data);
 		}
 
 	}

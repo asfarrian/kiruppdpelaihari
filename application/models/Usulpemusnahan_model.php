@@ -38,7 +38,7 @@ class Usulpemusnahan_model extends CI_Model
     public function move_data($id_barang){
         $datapemusnahan = [
             'id_barang'=> $id_barang,
-            'tahun_anggaran'=> $this->input->post('tahun_anggaran'),
+            'id_tahun'=> $this->input->post('id_tahun'),
             'cara_pemusnahan'=> $this->input->post('cara_pemusnahan')
         ];
         $this->db->insert("tb_pemusnahan", $datapemusnahan);

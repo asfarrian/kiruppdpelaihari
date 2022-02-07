@@ -105,7 +105,7 @@
                     <td class="border"><?= $data['tahun_pembelian'] ?></td>
                     <td class="border"><?= $data['asal_usul'] ?></td>
                     <td class="border"><?= $data['kondisi'] ?></td>
-                    <td class="border"><?= $data['harga'] ?></td>
+                    <td class="border">Rp<?php echo number_format($data['harga'],2,",",".")?></td>
                     <td class="border"><?= $data['keterangan'] ?></td>
                 </tr>
             <?php } ?>

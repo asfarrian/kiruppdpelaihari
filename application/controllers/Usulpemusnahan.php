@@ -5,7 +5,7 @@
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model(array('usulpemusnahan_model', 'ruangan_model', 'instansi_model'));
+			$this->load->model(array('usulpemusnahan_model', 'ruangan_model', 'instansi_model', 'tahunanggaran_model'));
 		}
 
 		public function index()
@@ -29,6 +29,7 @@
 				redirect('usulpemusnahan');
 			}else{
 				$data['usulpemusnahan'] = $this->usulpemusnahan_model->get_data($id_barang);
+				$data['tahunanggaran'] = $this->tahunanggaran_model->get_data();
 				$this->load->view('template/sidebar');
 				$this->load->view('template/header');
 				$this->load->view('usulpemusnahan/move_data', $data);

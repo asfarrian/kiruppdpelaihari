@@ -5,7 +5,7 @@
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model(array('dashboard_model', 'ruangan_model', 'instansi_model'));
+			$this->load->model(array('dashboard_model', 'ruangan_model', 'instansi_model', 'tahunanggaran_model'));
 		}
 
 		public function index()
@@ -23,6 +23,7 @@
 			}else{
 				$data['dashboard'] = $this->dashboard_model->get_data($id);
 				$data['ruangan'] = $this->ruangan_model->get_data();
+
 				$this->load->view('template/sidebar');
 				$this->load->view('template/header');
 				$this->load->view('dashboard/update_data', $data);
@@ -38,6 +39,7 @@
 				$data['dashboard'] = $this->dashboard_model->get_data($id_barang);
 				$data['ruangan'] = $this->ruangan_model->get_data();
 				$data['instansi'] = $this->instansi_model->get_data();
+				$data['tahunanggaran'] = $this->tahunanggaran_model->get_data();
 				$this->load->view('template/sidebar');
 				$this->load->view('template/header');
 				$this->load->view('dashboard/move_data', $data);

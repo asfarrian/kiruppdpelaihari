@@ -32,11 +32,13 @@
 			}
 		}
 
-		public function hapus($id_barang)
+		public function laporan_pdf()
 		{
-			$this->barangrusak_model->delete_data($id_barang);
-
-			redirect('barangrusak');
+			$data['barangrusak']=$this->barangrusak_model->lihat_barangrusak_by_kondisi('Rusak Berat', 'Unit Pelayanan Pendapatan Daerah Pelaihari');
+			$this->load->library('pdf');
+			$this->pdf->setPaper('Folio', 'landscape');
+			$this->pdf->filename = "laporan-barangrusakberat.pdf";
+			$this->pdf->load_view('barangrusak/laporan_pdf', $data);
 		}
 
 

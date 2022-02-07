@@ -72,7 +72,7 @@ class Dashboard_model extends CI_Model
         $dataMutasikeluar = [
             'id_barang'=> $id_barang,
             'id_instansi'=> $this->input->post('id_instansi'),
-            'tahun_anggaran'=> $this->input->post('tahun_anggaran')
+            'id_tahun'=> $this->input->post('id_tahun')
             ];
             $this->db->insert("tb_mutasikeluar", $dataMutasikeluar);
             

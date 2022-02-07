@@ -7,7 +7,7 @@
                     </div>
                     <div class="card shadow mb-4">
      <div class="card-header py-3">
-         <h6 class="m-0 font-weight-bold text-primary">Pilih Ruangan</h6>
+         <h6 class="m-0 font-weight-bold text-dark">Pilih Ruangan</h6>
      </div>
      <div class="card-body">
      <div class="row">
@@ -18,7 +18,7 @@
 							<div class="form-group">
 								<label for="nama">Nama Ruangan</label>
 								<select name="id_ruangan" required class="form-control">
-									<option value="">Pilih Ruangan</option>
+									<option value="">--Pilih Ruangan--</option>
 									<?php foreach($ruangan as $row) { ?>
                                         <option
                                             value="<?= $row->id_ruangan ?>"
@@ -33,7 +33,7 @@
 									<?php } ?>
 								</select>
 							</div>
-                        <input type="submit" class="btn btn-primary" value="Cari">
+                        <input type="submit" class="btn btn-secondary" value="Cari">
                         </form>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                             <a
                                 href="<?= site_url("Kir/laporan_pdf/". $selected_id_ruangan) ?>"
                                 target="_blank"
-                                class="btn btn-primary mt-3">Cetak PDF</a>
+                                class="btn btn-info mt-3">Cetak PDF</a>
                         <?php } ?>
         </div>
 		<div class="card shadow mb-4">
@@ -87,7 +87,7 @@
                         <td><?php echo $data['nama_ruangan'] ?></td>
                         <td><div class='btn-group'>
                             <a
-                                href="<?php echo base_url('dashboard/ubah/'.$data['id_barang']) ?>"
+                                href="<?php echo base_url('kir/ubah/'.$data['id_barang']) ?>"
                                 class='btn btn-warning'>Ubah</a>
                         </td>
                         </tr>

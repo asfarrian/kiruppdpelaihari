@@ -75,7 +75,7 @@
                     <td class="border"><?= $data['merk'] ?></td>
                     <td class="border"><?= $data['ukuran'] ?></td>
                     <td class="border"><?= $data['nama_instansi'] ?></td>
-                    <td class="border"><?= $data['tahun_anggaran'] ?></td>
+                    <td class="border"><?= $data['nama_tahun'] ?></td>
                     <td class="border"><?= $data['nama_ruangan'] ?></td>
                     <td class="border"><?= $data['keterangan'] ?></td>
                 </tr>

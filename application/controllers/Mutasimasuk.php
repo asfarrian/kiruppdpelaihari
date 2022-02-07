@@ -5,12 +5,12 @@
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model(array('mutasimasuk_model', 'dashboard_model', 'instansi_model', 'ruangan_model'));
+			$this->load->model(array('mutasimasuk_model', 'dashboard_model', 'instansi_model', 'ruangan_model', 'tahunanggaran_model'));
 		}
 
 		public function index()
 		{
-			$tahun_anggaran = $this->input->get('tahun_anggaran', TRUE);
+			$tahun_anggaran = $this->input->get('id_tahun', TRUE);
 
 			if ($tahun_anggaran) {
 				$data['mutasimasuk'] = $this->mutasimasuk_model->cari($tahun_anggaran);
@@ -18,7 +18,7 @@
 			} else {
 				$data['mutasimasuk']=$this->mutasimasuk_model;
 			}
-
+			$data['tahunanggaran'] = $this->tahunanggaran_model->get_data();
 			$this->load->view('template/sidebar');
 			$this->load->view('template/header');
 			$this->load->view('mutasimasuk/view_data', $data);
@@ -33,6 +33,7 @@
 			}else{
                 $data['dashboard'] = $this->dashboard_model->get_data();
 				$data['instansi'] = $this->instansi_model->get_data();
+				$data['tahunanggaran'] = $this->tahunanggaran_model->get_data();
 				$data['ruangan'] = $this->ruangan_model->get_data();
 
 				$this->load->view('template/sidebar');
@@ -51,7 +52,7 @@
 				$data['mutasimasuk'] = $this->mutasimasuk_model->get_data_byid($id_barangmasuk);
 				$data['instansi'] = $this->instansi_model->get_data();
 				$data['ruangan'] = $this->ruangan_model->get_data();
-				$data['tahun'] = [2021, 2022, 2023, 2024, 2025];
+				$data['tahunanggaran'] = $this->tahunanggaran_model->get_data();
 
 				$this->load->view('template/sidebar');
 				$this->load->view('template/header');
@@ -67,21 +68,12 @@
 			redirect('mutasimasuk');
 		}
 
-		public function laporan_pdf()
+		public function laporan_pdf($id_tahun)
 		{
-			{
-				$tahun_anggaran = $this->input->get('tahun_anggaran', TRUE);
-	
-				if ($tahun_anggaran) {
-					$data['mutasimasuk'] = $this->mutasimasuk_model->cari($tahun_anggaran);
-					$data['selected_mutasi_masuk'] = $tahun_anggaran;
-				} else {
-					$data['mutasimasuk']=$this->mutasimasuk_model->get_data();
-				}
+			$data['mutasimasuk'] = $this->mutasimasuk_model->cari($id_tahun);
 			$this->load->library('pdf');
 			$this->pdf->setPaper('Folio', 'potrait');
 			$this->pdf->filename = "laporan-mutasimasuk.pdf";
-			$this->pdf->load_view('mutasimasuk/laporan_pdf', $data);
+			$this->pdf->load_view('Mutasimasuk/laporan_pdf', $data);
 		}
-	}
 }

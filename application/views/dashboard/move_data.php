@@ -62,15 +62,15 @@
 							</div>
                             <div class="form-group">
 								<label for="nama">Tahun Anggaran</label>
-								<select name="tahun_anggaran" required class="form-control">
+								<select name="id_tahun" required class="form-control">
 									<option value="">Pilih Tahun</option>
-                                    <option value="2021">2021</option>
-									<option value="2021">2022</option>
-									<option value="2021">2023</option>
-									<option value="2021">2024</option>
-									<option value="2021">2025</option>
- >								</select>
-							</div>
+									<?php
+										foreach($tahunanggaran as $row){
+											echo "<option value='$row->id_tahun'>$row->nama_tahun</option>";
+										}
+										?>
+								</select>
+                            </div>
 							<div class="form-group">
 								<button type="submit" name="keluar" class="btn btn-primary">Simpan
 								</button>
