@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2022 at 12:49 PM
+-- Generation Time: Feb 07, 2022 at 04:32 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -38,7 +38,8 @@ CREATE TABLE `tb_instansi` (
 
 INSERT INTO `tb_instansi` (`id_instansi`, `nama_instansi`) VALUES
 (1, 'Badan Keuangan Daerah Prov. Kalimantan Selatan'),
-(2, 'Sekretariat Daerah Kab. Tanah Laut');
+(2, 'Sekretariat Daerah Kab. Tanah Laut'),
+(3, 'Percobaan Instansi');
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,7 @@ CREATE TABLE `tb_inventaris` (
 --
 
 INSERT INTO `tb_inventaris` (`id_barang`, `kode_barang`, `nama_barang`, `merk`, `nomor_registrasi`, `ukuran`, `bahan`, `tahun_pembelian`, `asal_usul`, `kondisi`, `harga`, `keterangan`, `Status`, `id_ruangan`) VALUES
-('00001', '06.01.02.12', 'Mesin penghitung uang', 'SUPER COUNTER / SC-7', '0011', '', '', '2010', 'Pembelian', 'Baik', 33825000, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 17),
+('00001', '06.01.02.12', 'Mesin penghitung uang', 'SUPER COUNTER / SC-7', '0011', '', '', '2010', 'Pembelian', 'Rusak Ringan', 33825000, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 17),
 ('00002', '06.01.04.01', 'Almari Besi/Metal', 'BROTHER', '0012', '', '', '2008', 'Pembelian', 'Baik', 1400000, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 4),
 ('00003', '06.01.04.01', 'Almari Besi/Metal', '', '0013', '', '', '2009', 'Pembelian', 'Baik', 3825000, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 7),
 ('00004', '06.01.04.01', 'Almari Besi/Metal', 'BROTHER / B-203', '0014', '', '', '2010', 'Pembelian', 'Baik', 2400000, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 5),
@@ -405,32 +406,76 @@ INSERT INTO `tb_inventaris` (`id_barang`, `kode_barang`, `nama_barang`, `merk`, 
 ('00334', '07.01.02.10', 'Peralatan Studio Video dan Film', 'CCTV SECAM', '0001', '8 TITIK', '', '2020', 'APBD', 'Baik', 12050429, 'UNIT PELAYANAN PENDAPATAN DAER', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 1),
 ('00335', '07.02.01.08', 'Sound System', 'BMB DA 2000 II', '0001', '', '', '2020', 'APBD', 'Baik', 11900000, 'UNIT PELAYANAN PENDAPATAN DAER', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 35),
 ('00336', '07.02.01.20', 'Facsimile', 'PANASONIC/KX-FT983CX', '0235', '', '', '2011', 'Pembelian', 'Baik', 1842533, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 5),
-('BM00001', '02.03.04.03', 'Meja Besi', 'Panasonic', '21', 'Besar', 'Besi', '2021', 'Pembelian', 'Baik', 1200000, 'Belum Masuk KIB', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 2),
-('BM00004', '', 'Percobaan 3', 'Rian', NULL, 'Asfar', '', NULL, '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 9),
-('BM00005', '', 'Percobaan 3', 'Rian', NULL, 'Besar', '', NULL, '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 15),
-('BM00006', '', 'Contoh Barang Keluar', '1', NULL, '1', '', NULL, '', NULL, NULL, '', 'Barang Mutasi Keluar', 9),
-('BM00007', '', 'Contoh Barang Keluar', '2', NULL, '2', '', NULL, '', NULL, NULL, '', 'Barang Mutasi Keluar', 8);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_inventariskeluar`
---
-
-CREATE TABLE `tb_inventariskeluar` (
-  `id_barang` int(5) NOT NULL,
-  `kode_barang` varchar(11) DEFAULT NULL,
-  `nama_barang` varchar(70) DEFAULT NULL,
-  `merk` varchar(50) NOT NULL,
-  `nomor_registrasi` varchar(4) NOT NULL,
-  `ukuran` varchar(10) NOT NULL,
-  `bahan` varchar(30) NOT NULL,
-  `tahun_pembelian` varchar(4) DEFAULT NULL,
-  `asal_usul` varchar(15) DEFAULT NULL,
-  `kondisi` varchar(15) DEFAULT NULL,
-  `harga` int(15) DEFAULT NULL,
-  `keterangan` int(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+('BM00001', '', 'Printer Laser Jet', 'HP P1566', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 33),
+('BM00002', '', 'Bangku Tunggu', '', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 22),
+('BM00003', '', 'Bangku Tunggu', '', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 22),
+('BM00004', '', 'Bangku Tunggu', '', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 22),
+('BM00005', '', 'Bangku Tunggu', '', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 22),
+('BM00006', '', 'Meja', 'OT 1122 Siantano', NULL, '1/2 Biro', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00007', '', 'Kursi Staf', 'Savello Wando MTO', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 6),
+('BM00008', '', 'Kursi Staf', 'Savello Wando MTO', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00009', '', 'Kursi Staf', 'Savello Wando MTO', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00010', '', 'Kursi Staf', 'Savello Wando MTO', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00011', '', 'Kursi Staf', 'Savello Wando MTO', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00012', '', 'Kursi Staf', 'Savello Combi', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 7),
+('BM00013', '', 'Kursi Staf', 'Savello Combi', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 7),
+('BM00014', '', 'Kursi Staf', 'Savello Combi', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 5),
+('BM00015', '', 'Kursi Staf', 'Savello Combi', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 9),
+('BM00016', '', 'Kursi Staf', 'Savello Combi', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 33),
+('BM00017', '', 'Kursi Staf', 'Savello Combi', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 33),
+('BM00018', '', 'Televisi', 'LG', NULL, '55', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 22),
+('BM00019', '', 'Filling Kabinet', 'SAN', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 5),
+('BM00020', '', 'Lemari Besi Arsip', 'SAN', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 4),
+('BM00021', '', 'Laptop', 'Asus ROG 15\" i7', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 5),
+('BM00022', '', 'Monitor', 'HP 22\" ZR2240w', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 13),
+('BM00023', '', 'Laptop', 'HP Probook Core i5', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 4),
+('BM00024', '', 'Printer', 'Canon G3010', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 5),
+('BM00025', '', 'Printer', 'Canon G3010', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 5),
+('BM00026', '', 'AC Standing', 'LG', NULL, '5 PK', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 22),
+('BM00027', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00028', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00029', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00030', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00031', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00032', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 17),
+('BM00033', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 17),
+('BM00034', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 15),
+('BM00035', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 15),
+('BM00036', '', 'PC Unit', 'HP', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 14),
+('BM00037', '', 'Printer', 'Epson Dotmatrik LQ 2190', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 17),
+('BM00038', '', 'Printer', 'Epson Dotmatrik LQ 2190', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 17),
+('BM00039', '', 'Printer', 'Epson Dotmatrik LQ 2190', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 15),
+('BM00040', '', 'Printer', 'Epson Dotmatrik LQ 2190', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 18),
+('BM00041', '', 'Printer', 'Epson Dotmatrik LQ 2190', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00042', '', 'Printer', 'Epson Dotmatrik LQ 2190', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00043', '', 'Printer', 'Epson Dotmatrik LQ 2190', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00044', '', 'UPS', 'Prolink', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 2),
+('BM00045', '', 'UPS', 'Prolink', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00046', '', 'UPS', 'Prolink', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00047', '', 'UPS', 'Prolink', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 15),
+('BM00048', '', 'UPS', 'Prolink', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 14),
+('BM00049', '', 'Kendaraan Bermotor (R4)', 'Double Cabin Nissan Navara DA 739 RA No. Rangka MN', NULL, '', '', '2016', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 0),
+('BM00050', '', 'AC Portable', 'Midea', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 8),
+('BM00051', '', 'Mesin Penghitung Uang', 'Midea', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 17),
+('BM00052', '', 'Komputer All in One', 'Lenovo', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 1),
+('BM00053', '', 'Komputer All in One', 'Lenovo', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 6),
+('BM00054', '', 'Komputer All in One', 'Lenovo', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 12),
+('BM00055', '', 'Komputer All in One', 'Lenovo', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 5),
+('BM00056', '', 'Komputer All in One', 'Lenovo', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 5),
+('BM00057', '', 'Layar Proyektor', '', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 9),
+('BM00058', '', 'AC Split', 'Daikin', NULL, '2 PK', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 35),
+('BM00059', '', 'AC Split', 'Daikin', NULL, '2 PK', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 33),
+('BM00060', '', 'AC Split', 'Daikin', NULL, '2 PK', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 7),
+('BM00061', '', 'AC Standing', 'Daikin', NULL, '5 PK', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 16),
+('BM00062', '', 'Genset', 'Krisbow', NULL, '40 KVA', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 0),
+('BM00063', '', 'Meja kerja staf 1/2', 'ACTIV', NULL, '1/2 Biro', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 4),
+('BM00064', '', 'Kursi Kerja Staf', 'IMPORTA', NULL, '1/2 Biro', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 4),
+('BM00065', '', 'Lemari Pintu Kaca', 'Delica', NULL, '1/2 Biro', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 4),
+('BM00066', '', 'Sofa Biru', '', NULL, '', '', '2021', '', NULL, NULL, '', 'Unit Pelayanan Pendapatan Daerah Pelaihari', 22),
+('BM00067', '', 'Percobaan Nama Barang', 'Percobaan Merk Barang', '', 'Percobaan ', '', '', '', 'Rusak Berat', 1200000, '', 'Barang Telah Dimusnahkan', 44),
+('BM00068', '', 'Coba Lagi ', '-', '', '-', '', '', '', 'Rusak Berat', 0, '', 'Barang Telah Dimusnahkan', 18),
+('BM00069', '', 'Lagi', 'Laggg', '', 'djijfosidj', '', '', '', 'Rusak Berat', 0, '', 'Barang Telah Dimusnahkan', 14),
+('BM00070', '', 'Rian', 'Asfar', '', 'Sahrul', '', '', '', 'Rusak Berat', 0, '', 'Barang Telah Dimusnahkan', 5);
 
 -- --------------------------------------------------------
 
@@ -440,13 +485,20 @@ CREATE TABLE `tb_inventariskeluar` (
 
 CREATE TABLE `tb_login` (
   `id_login` int(2) NOT NULL,
-  `nip` int(18) DEFAULT NULL,
+  `nip` varchar(18) DEFAULT NULL,
   `nama_pegawai` varchar(50) DEFAULT NULL,
   `jabatan` varchar(50) DEFAULT NULL,
   `username` varchar(15) DEFAULT NULL,
   `password` varchar(150) DEFAULT NULL,
   `level_pengguna` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_login`
+--
+
+INSERT INTO `tb_login` (`id_login`, `nip`, `nama_pegawai`, `jabatan`, `username`, `password`, `level_pengguna`) VALUES
+(1, '-', 'Achmad Sahrul Asfarianoor', 'Tenaga Kontrak', 'admin', '12345', 'admin');
 
 -- --------------------------------------------------------
 
@@ -456,11 +508,9 @@ CREATE TABLE `tb_login` (
 
 CREATE TABLE `tb_mutasikeluar` (
   `id_barangkeluar` int(10) NOT NULL,
-  `id_barang` int(10) NOT NULL,
-  `no_bast` varchar(30) DEFAULT NULL,
-  `tanggal` date DEFAULT NULL,
+  `id_barang` varchar(10) DEFAULT NULL,
   `id_instansi` int(3) DEFAULT NULL COMMENT 'Instansi Tujuan Mutasi Barang',
-  `tahun_anggaran` varchar(4) DEFAULT NULL
+  `id_tahun` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -472,22 +522,85 @@ CREATE TABLE `tb_mutasikeluar` (
 CREATE TABLE `tb_mutasimasuk` (
   `id_barangmasuk` int(10) NOT NULL,
   `id_barang` varchar(10) NOT NULL,
-  `no_bast` varchar(30) DEFAULT NULL,
-  `tanggal` date DEFAULT NULL,
   `id_instansi` int(3) DEFAULT NULL COMMENT 'Asal Tempat Instansi Mutasi Barang',
-  `tahun_anggaran` varchar(4) DEFAULT NULL
+  `id_tahun` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_mutasimasuk`
 --
 
-INSERT INTO `tb_mutasimasuk` (`id_barangmasuk`, `id_barang`, `no_bast`, `tanggal`, `id_instansi`, `tahun_anggaran`) VALUES
-(1, 'BM00001', '01/bakeuda/2021', '2021-01-04', 1, '2021'),
-(13, 'BM00004', '123', '2022-01-25', 1, '2021'),
-(14, 'BM00005', '123', '2022-01-25', 1, '2021'),
-(15, 'BM00006', '1', '2022-01-10', 1, '2021'),
-(16, 'BM00007', '2', '2022-01-11', 2, '2021');
+INSERT INTO `tb_mutasimasuk` (`id_barangmasuk`, `id_barang`, `id_instansi`, `id_tahun`) VALUES
+(20, 'BM00001', 1, 1),
+(21, 'BM00002', 1, 1),
+(22, 'BM00003', 1, 1),
+(23, 'BM00004', 1, 1),
+(24, 'BM00005', 1, 1),
+(25, 'BM00006', 1, 1),
+(26, 'BM00007', 1, 1),
+(27, 'BM00008', 1, 1),
+(28, 'BM00009', 1, 1),
+(29, 'BM00010', 1, 1),
+(30, 'BM00011', 1, 1),
+(31, 'BM00012', 1, 1),
+(32, 'BM00013', 1, 1),
+(33, 'BM00014', 1, 1),
+(34, 'BM00015', 1, 1),
+(35, 'BM00016', 1, 1),
+(36, 'BM00017', 1, 1),
+(37, 'BM00018', 1, 1),
+(38, 'BM00019', 1, 1),
+(39, 'BM00020', 1, 1),
+(40, 'BM00021', 1, 1),
+(41, 'BM00022', 1, 1),
+(42, 'BM00023', 1, 1),
+(43, 'BM00024', 1, 1),
+(44, 'BM00025', 1, 1),
+(45, 'BM00026', 1, 1),
+(46, 'BM00027', 1, 1),
+(47, 'BM00028', 1, 1),
+(48, 'BM00029', 1, 1),
+(49, 'BM00030', 1, 1),
+(50, 'BM00031', 1, 1),
+(51, 'BM00032', 1, 1),
+(52, 'BM00033', 1, 1),
+(53, 'BM00034', 1, 1),
+(54, 'BM00035', 1, 1),
+(55, 'BM00036', 1, 1),
+(56, 'BM00037', 1, 1),
+(57, 'BM00038', 1, 1),
+(58, 'BM00039', 1, 1),
+(59, 'BM00040', 1, 1),
+(60, 'BM00041', 1, 1),
+(61, 'BM00042', 1, 1),
+(62, 'BM00043', 1, 1),
+(63, 'BM00044', 1, 1),
+(64, 'BM00045', 1, 1),
+(65, 'BM00046', 1, 1),
+(66, 'BM00047', 1, 1),
+(67, 'BM00048', 1, 1),
+(68, 'BM00049', 1, 1),
+(69, 'BM00050', 1, 1),
+(70, 'BM00051', 1, 1),
+(71, 'BM00052', 1, 1),
+(72, 'BM00053', 1, 1),
+(73, 'BM00054', 1, 1),
+(74, 'BM00055', 1, 1),
+(75, 'BM00056', 1, 1),
+(76, 'BM00057', 1, 1),
+(77, 'BM00058', 1, 1),
+(78, 'BM00059', 1, 1),
+(79, 'BM00060', 1, 1),
+(80, 'BM00061', 1, 1),
+(81, 'BM00062', 1, 1),
+(82, 'BM00063', 1, 1),
+(83, 'BM00064', 1, 1),
+(84, 'BM00065', 1, 1),
+(85, 'BM00066', 1, 1),
+(86, 'BM00067', 1, 1),
+(94, 'BM00068', 1, 1),
+(95, 'BM00069', 1, 1),
+(96, 'BM00070', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -497,10 +610,20 @@ INSERT INTO `tb_mutasimasuk` (`id_barangmasuk`, `id_barang`, `no_bast`, `tanggal
 
 CREATE TABLE `tb_pemusnahan` (
   `id_pemusnahan` int(10) NOT NULL,
-  `id_barang` int(10) NOT NULL,
-  `no_surat` int(30) DEFAULT NULL,
-  `tahun_anggaran` varchar(4) DEFAULT NULL
+  `id_barang` varchar(10) NOT NULL,
+  `cara_pemusnahan` varchar(30) DEFAULT NULL,
+  `id_tahun` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_pemusnahan`
+--
+
+INSERT INTO `tb_pemusnahan` (`id_pemusnahan`, `id_barang`, `cara_pemusnahan`, `id_tahun`) VALUES
+(3, 'BM00069', 'Dibakar', 1),
+(4, 'BM00068', 'Ditimbun', 1),
+(5, 'BM00067', 'Dibakar', 1),
+(6, 'BM00070', 'Ditimbun', 1);
 
 -- --------------------------------------------------------
 
@@ -558,7 +681,27 @@ INSERT INTO `tb_ruangan` (`id_ruangan`, `nama_ruangan`) VALUES
 (38, 'Gudang'),
 (39, 'Kamar Mandi/WC'),
 (40, 'Mobil SAMSAT Keliling 1 (DA 7021 PM)'),
-(41, 'Mobil SAMSAT Keliling 2 (DA 136 LB)');
+(41, 'Mobil SAMSAT Keliling 2 (DA 136 LB)'),
+(44, 'Percobaan Ruangan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_tahunanggaran`
+--
+
+CREATE TABLE `tb_tahunanggaran` (
+  `id_tahun` int(2) NOT NULL,
+  `nama_tahun` int(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_tahunanggaran`
+--
+
+INSERT INTO `tb_tahunanggaran` (`id_tahun`, `nama_tahun`) VALUES
+(1, 2021),
+(2, 2022);
 
 --
 -- Indexes for dumped tables
@@ -574,12 +717,6 @@ ALTER TABLE `tb_instansi`
 -- Indexes for table `tb_inventaris`
 --
 ALTER TABLE `tb_inventaris`
-  ADD PRIMARY KEY (`id_barang`);
-
---
--- Indexes for table `tb_inventariskeluar`
---
-ALTER TABLE `tb_inventariskeluar`
   ADD PRIMARY KEY (`id_barang`);
 
 --
@@ -613,6 +750,12 @@ ALTER TABLE `tb_ruangan`
   ADD PRIMARY KEY (`id_ruangan`);
 
 --
+-- Indexes for table `tb_tahunanggaran`
+--
+ALTER TABLE `tb_tahunanggaran`
+  ADD PRIMARY KEY (`id_tahun`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -620,37 +763,43 @@ ALTER TABLE `tb_ruangan`
 -- AUTO_INCREMENT for table `tb_instansi`
 --
 ALTER TABLE `tb_instansi`
-  MODIFY `id_instansi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_instansi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_login`
 --
 ALTER TABLE `tb_login`
-  MODIFY `id_login` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_login` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_mutasikeluar`
 --
 ALTER TABLE `tb_mutasikeluar`
-  MODIFY `id_barangkeluar` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barangkeluar` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_mutasimasuk`
 --
 ALTER TABLE `tb_mutasimasuk`
-  MODIFY `id_barangmasuk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_barangmasuk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `tb_pemusnahan`
 --
 ALTER TABLE `tb_pemusnahan`
-  MODIFY `id_pemusnahan` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pemusnahan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_ruangan`
 --
 ALTER TABLE `tb_ruangan`
-  MODIFY `id_ruangan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_ruangan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `tb_tahunanggaran`
+--
+ALTER TABLE `tb_tahunanggaran`
+  MODIFY `id_tahun` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
