@@ -27,6 +27,7 @@
 			}else{
 				$data['dashboard'] = $this->dashboard_model->get_data($id);
 				$data['ruangan'] = $this->ruangan_model->get_data();
+				$data['kondisi'] = ["Baik", "Rusak Ringan", "Rusak Berat"];
 
 				$this->load->view('template/sidebar');
 				$this->load->view('template/header');

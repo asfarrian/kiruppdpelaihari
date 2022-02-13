@@ -55,9 +55,13 @@
                         <td>Rp<?php echo number_format($data['harga'],2,",",".")?></td>
                         <td><?php echo $data['keterangan'] ?></td>
                         <td><?php echo $data['nama_ruangan'] ?></td>
-                        <td><div class='btn-group'>
-                        <a href="<?php echo base_url('barangrusakringan/ubah/'.$data['id_barang']) ?>" class='btn btn-warning'>Ubah</a> &nbsp;
+                        <td>
+                        <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
+                        <div class='btn-group'>
+                        <a href="<?php echo base_url('barangrusakringan/ubah/'.$data['id_barang']) ?>" 
+                        class='btn btn-warning'>Ubah</a> &nbsp;
                         </td>
+                        <?php endif ?>
                         </tr>
                <?php
                    endforeach;

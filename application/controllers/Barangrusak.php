@@ -36,6 +36,16 @@
 			}
 		}
 
+		
+		public function hapus($id_barang){
+			if(!isset($id_barang)){
+				redirect('barangrusak');
+			}else{
+				$this->barangrusak_model->delete_data($id_barang);
+				redirect('barangrusak');
+			}
+		}
+
 		public function laporan_pdf()
 		{
 			$data['barangrusak']=$this->barangrusak_model->lihat_barangrusak_by_kondisi('Rusak Berat', 'Unit Pelayanan Pendapatan Daerah Pelaihari');

@@ -13,54 +13,41 @@
      </div>
      <div class="card-body">
      <div class="row">
-			<div class="col-md-6">
+	 <div class="col-md-6">
 				<div class="panel panel-primary">
 					<div class="panel-body">
-						<form action="" method="post" class="mt-3">
-						<div class="form-group">
+						<form action="<?= base_url('users/ubah');?>" method="post" class="mt-3">
+							<div class="form-group">
 								<label for="nama">NIP</label>
-								<input
-									class="form-control"
-									type="text"
-									name="NIP"
-									value="<?= $barangrusakringan['id_barang'] ?>" required>
-							</div>
-                        <div class="form-group">
-								<label for="nama">Nama Barang</label>
-								<input disabled
-									class="form-control"
-									type="text"
-									name="nama_barang"
-									value="<?= $barangrusakringan['nama_barang'] ?>" required>
+								<input type="number" autocomplete="off" name="nip" 
+								class="form-control" value="<?= $users['nip'] ?>" required>
 							</div>
                             <div class="form-group">
-								<label for="nama">Merk</label>
-								<input disabled
-									class="form-control"
-									type="text"
-									name="merk"
-									value="<?= $barangrusakringan['merk'] ?>" required>
+								<label for="nama">Nama Pegawai</label>
+								<input type="text" autocomplete="off" name="nama" 
+								class="form-control" value="<?= $users['nama_pegawai'] ?>" required>
 							</div>
                             <div class="form-group">
-								<label for="nama">Ukuran</label>
-								<input disabled
-									class="form-control"
-									type="text"
-									name="ukuran"
-									value="<?= $barangrusakringan['ukuran'] ?>" required>
+								<label for="nama">Jabatan</label>
+								<input type="text" autocomplete="off" name="jabatan" 
+								class="form-control" value="<?= $users['jabatan'] ?>" required>
 							</div>
-						<div class="form-group">
-								<label for="nama">Kondisi</label>
-								<select name="kondisi" required class="form-control">
-									<option value="" >Pilih Kondisi</option>
-									<?php foreach($kondisi as $kon) { ?>
-										<option value="<?= $kon ?>" <?= $kon == $barangrusakringan['kondisi'] ? 'selected': '' ?>><?= $kon ?></option>
+                            <div class="form-group">
+								<label for="nama">Tanggal Lahir</label>
+								<input type="date" autocomplete="off" name="tanggal_lahir" 
+								class="form-control" value="<?= $users['tanggal_lahir'] ?>" required>
+							</div>
+							<div class="form-group">
+								<label for="nama">Level Pengguna</label>
+								<select name="level_pengguna" required class="form-control">
+									<option value="" >--Pilih Level--</option>
+									<?php foreach($levelpengguna as $level) { ?>
+										<option value="<?= $level ?>" <?= $level == $users['level_pengguna'] ? 'selected': '' ?>><?= $level ?></option>
 									<?php } ?>
 								</select>
 							</div>
 							<div class="form-group">
-								<button type="submit" name="ubah" class="btn btn-primary">Simpan
-								</button>
+								<button type="submit" name="ubah" class="btn btn-primary">Simpan</button>
 							</div>
 						</form>
 					</div>

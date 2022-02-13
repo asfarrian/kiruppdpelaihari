@@ -4,8 +4,10 @@
                    <!-- Page Heading -->
                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Mutasi Barang Masuk</h1>
+                        <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
                         <a href="<?= base_url('mutasimasuk/tambah');?>" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Tambah Barang Masuk</a>
+                                class="fas fa-download fa-sm text-white-50"></i> Tambah Barang Masuk</a>
+                         <?php endif ?>
                     </div>
 
  <!-- DataTales Example -->
@@ -90,6 +92,7 @@
                         <td><?= $data['keterangan'] ?></td>
                         <td><?= $data['nama_ruangan'] ?></td>
                         <td>
+                        <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
                             <div class='btn-group'>
                             <a
                                 href='<?= site_url("Mutasimasuk/ubah/". $data['id_barangmasuk'] ."/". $data['id_barang']) ?>'
@@ -99,6 +102,7 @@
                                 href='<?= site_url("Mutasimasuk/hapus/". $data['id_barangmasuk'] ."/". $data['id_barang']) ?>'
                                 onclick="return confirm('Ingin menghapus data ini?')">Hapus</a>
                             </div>
+                        <?php endif ?>
                         </td>
                     </tr>
                 <?php } ?>

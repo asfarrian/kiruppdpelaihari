@@ -63,7 +63,7 @@
                     $fileContent = file_get_contents(base_url('assets/img/Kalsel.png'));
                     $base64 = 'data:image/' . 'png' . ';base64,' . base64_encode($fileContent);
                 ?>
-                <td><img src="<?= $base64 ?>" width="140px"></td>
+                <td><img src="<?= $base64 ?>" width="155px" align="right"></td>
                 <td class="tengah">
                     <h3>PEMERINTAH PROVINSI KALIMANTAN SELATAN</h3>
                     <h3>BADAN KEUANGAN DAERAH</h3>
@@ -100,7 +100,6 @@
                 <th class="border" scope="col">Harga</th>
                 <th class="border" scope="col" width="100px">Keterangan</th>
                 <th class="border" scope="col" width="110px">Cara Pemusnahan</th>
-                <th class="border" scope="col">Tahun Anggaran</th>
             </tr>
             <tr>
                 <th class="border">1</th>
@@ -116,7 +115,6 @@
                 <th class="border">11</th>
                 <th class="border">12</th>
                 <th class="border">13</th>
-                <th class="border">14</th>
             </tr>
         </thead>
         <tbody>
@@ -135,7 +133,6 @@
                     <td class="border">Rp<?php echo number_format($data['harga'],2,",",".")?></td>
                     <td class="border"><?= $data['keterangan'] ?></td>
                     <td class="border"><?= $data['cara_pemusnahan'] ?></td>
-                    <td class="border"><?= $data['nama_tahun'] ?></td>
                 </tr>
             <?php } ?>
         </tbody>
@@ -161,17 +158,14 @@
                 <td></td>
             </tr>
             <tr class="spaceUnder">
-                <td style="padding-bottom: 70px;"><b>KEPALA BADAN KEUANGAN DAERAH<br>PROVINSI KALIMANTAN SELATAN</b></td>
                 <td style="padding-bottom: 70px;"><b>KEPALA UPPD PELAIHARI</b></td>
                 <td style="padding-bottom: 70px;"><b>PELAKSANA</b></td>
             </tr>
             <tr>
                 <td class="text-center"><b>FAJAR GEMILANG, M. Si</b></td>
-                <td class="text-center"><b>FAJAR GEMILANG, M. Si</b></td>
                 <td class="text-center"><b>FARIDA ARIYANI</b></td>
             </tr>
             <tr>
-                <td class="text-center">NIP. 19661126 199310 1 001</td>
                 <td class="text-center">NIP. 19661126 199310 1 001</td>
                 <td class="text-center">NIP. 19760228 200701 2 012</td>
             </tr>

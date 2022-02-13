@@ -55,7 +55,9 @@
                         <td>Rp<?php echo number_format($data['harga'],2,",",".")?></td>
                         <td><?php echo $data['keterangan'] ?></td>
                         <td><?php echo $data['nama_ruangan'] ?></td>
-                        <td><div class='btn-group'>
+                        <td>
+                        <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
+                        <div class='btn-group'>
                         <a
                                 class='btn btn-warning'
                                 href='<?= site_url("usulpemusnahan/ubah/". $data['id_barang']) ?>'
@@ -66,6 +68,7 @@
                                 onclick="return confirm('Ingin Membatalkan Mengusulkan Pemusnahan pada Data Ini ?')">Batalkan Pemusnahan</a>
                         </div>
                             </td>
+                        <?php endif ?>
                         </tr>
                <?php
                    endforeach;

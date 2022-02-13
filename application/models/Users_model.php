@@ -21,24 +21,9 @@ class Users_model extends CI_Model
     }
 
     public function get_data_byid($id){
-        $query = $this->db->select(
-                                    'tb_mutasimasuk.*,
-
-                                    tb_inventaris.id_barang,
-                                    tb_inventaris.id_ruangan,
-                                    tb_inventaris.nama_barang,
-                                    tb_inventaris.merk,
-                                    tb_inventaris.ukuran,
-                                    tb_inventaris.keterangan,
-                                    tb_instansi.nama_instansi,
-                                    tb_ruangan.nama_ruangan,
-                                    tb_tahunanggaran.*')
-                                ->from('tb_mutasimasuk')
-                                ->join('tb_instansi', 'tb_instansi.id_instansi = tb_mutasimasuk.id_instansi', 'left')
-                                ->join('tb_inventaris', 'tb_inventaris.id_barang = tb_mutasimasuk.id_barang', 'left')
-                                ->join('tb_ruangan', 'tb_ruangan.id_ruangan = tb_inventaris.id_ruangan', 'left')
-                                ->join('tb_tahunanggaran', 'tb_tahunanggaran.id_tahun = tb_mutasimasuk.id_tahun', 'left')
-                                ->where(['tb_mutasimasuk.id_barangmasuk' => $id])
+        $query =$this->db->select('tb_login.*')
+                                ->from('tb_login')
+                                ->where(['tb_login.id_login' => $id])
                                 ->get()->row_array(); //->row_array() memanggil 1 data dengan array, cara panggil $namaVariable['nama_kolom_tabel']
             return $query;
     }
@@ -61,44 +46,39 @@ class Users_model extends CI_Model
     }
 
     //Tambah Data Mutasi Barang Masuk ke Dalam Kantor UPPD Pelaihari
-    public function insert_data(){
-        $data = [
-            'nip'=>$this->input->post('nip'),
-            'nama_pegawai'=> $this->input->post('nama'),
-            'jabatan'=> $this->input->post('jabatan'),
-            'username'=>$this->input->post('nip'),
-            'tanggal_lahir'=>$this->input->post('tanggal_lahir'),
-            'password'=> md5(date('dmY',strtotime($this->input->post('tanggal_lahir')))),
-            'level_pengguna'=> $this->input->post('level'),
-        ];
-        $this->db->insert("tb_login", $data);
-
-        if($this->db->affected_rows()>0){
-            $this->session->set_flashdata("pesan", "Data ruangan berhasil disimpan!");
-        }
-    }
+    public function insert_data() { 
+        $nip = $this->input->post("nip", true); 
+        $nama_pegawai = $this->input->post("nama", true); 
+        $jabatan = $this->input->post("jabatan", true); 
+        $tanggal_lahir = $this->input->post("tanggal_lahir", true); 
+        $level_pengguna = $this->input->post("level", true); 
+        $password = $this->input->post("tanggal_lahir", true); 
+        $data = [ "nip"=> $nip, 
+                  "password"=> password_hash($password, PASSWORD_BCRYPT),
+                  "nama_pegawai"=> $nama_pegawai,
+                  "jabatan"=> $jabatan,
+                  "tanggal_lahir"=> $tanggal_lahir,
+                  "level_pengguna"=> $level_pengguna, 
+                ]; 
+        $this->db->insert('tb_login', $data); }
 
     //Edit Data pada Mutasi Barang Masuk
-    public function update_data($id_barangmasuk, $id_barang)
+    public function update_data($id)
     {
-        $dataMutasiMasuk = [
-            'id_instansi'=> $this->input->post('id_instansi'),
-            'id_tahun'=> $this->input->post('id_tahun')
-        ];
-
-        $dataInventaris = [
-            'nama_barang'=> $this->input->post('nama_barang'),
-            'merk'=> $this->input->post('merk'),
-            'ukuran'=> $this->input->post('ukuran'),
-            'id_ruangan'=> $this->input->post('id_ruangan')
-        ];
-
-        $this->db->update('tb_mutasimasuk', $dataMutasiMasuk, ['id_barangmasuk' => $id_barangmasuk]);
-        $this->db->update('tb_inventaris', $dataInventaris, ['id_barang' => $id_barang]);
-
-        if($this->db->affected_rows() > 0)
-            $this->session->set_flashdata("pesan", "Data barang berhasil diperbaharui!");
-    }
+        $nip = $this->input->post("nip", true); 
+        $nama_pegawai = $this->input->post("nama", true); 
+        $jabatan = $this->input->post("jabatan", true); 
+        $tanggal_lahir = $this->input->post("tanggal_lahir", true); 
+        $level_pengguna = $this->input->post("level", true); 
+        $password = $this->input->post("tanggal_lahir", true); 
+        $data = [ "nip"=> $nip, 
+                  "password"=> password_hash($password, PASSWORD_BCRYPT),
+                  "nama_pegawai"=> $nama_pegawai,
+                  "jabatan"=> $jabatan,
+                  "tanggal_lahir"=> $tanggal_lahir,
+                  "level_pengguna"=> $level_pengguna, 
+                ]; 
+        $this->db->update('tb_login', $data, ['id_login' => $id]); }
 
     public function delete_data($id_login)
     {

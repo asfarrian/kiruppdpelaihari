@@ -55,13 +55,18 @@
                         <td>Rp<?php echo number_format($data['harga'],2,",",".")?></td>
                         <td><?php echo $data['keterangan'] ?></td>
                         <td><?php echo $data['nama_ruangan'] ?></td>
-                        <td><div class='btn-group'>
-                        <a href="<?php echo base_url('barangrusak/ubah/'.$data['id_barang']) ?>" class='btn btn-warning'>Ubah</a> &nbsp;
+                        <td>
+                        <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
+                        <div class='btn-group'>
+                        <a href="<?php echo base_url('barangrusak/ubah/'.$data['id_barang']) ?>" 
+                                class='btn btn-warning'>Ubah
+                        </a> &nbsp;
                         <a
                                 class='btn btn-danger'
                                 href='<?= site_url("barangrusak/hapus/". $data['id_barang']) ?>'
                                 onclick="return confirm('Ingin Mengusulkan Pemusnahan pada Data Ini?')">Usul Pemusnahan</a>
                         </td>
+                        <?php endif ?>
                         </tr>
                <?php
                    endforeach;

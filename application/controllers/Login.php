@@ -12,7 +12,6 @@
 		public function index()
 		{
 			$this->load->view('template/sidebarlogin');
-            $this->load->view('template/headerlogin');
             $this->load->view('login/view_data');
             $this->load->view('template/footerlogin');
 		}

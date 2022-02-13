@@ -51,7 +51,12 @@
 							</div>
 							<div class="form-group">
 								<label for="nama">Kondisi</label>
-								<input type="text" autocomplete="off" name="kondisi" class="form-control" value="<?php echo $dashboard['kondisi']?>">
+								<select name="kondisi" required class="form-control">
+									<option value="" >Pilih Kondisi</option>
+									<?php foreach($kondisi as $kon) { ?>
+										<option value="<?= $kon ?>" <?= $kon == $dashboard['kondisi'] ? 'selected': '' ?>><?= $kon ?></option>
+									<?php } ?>
+								</select>
 							</div>
 							<div class="form-group">
 								<label for="nama">Harga</label>

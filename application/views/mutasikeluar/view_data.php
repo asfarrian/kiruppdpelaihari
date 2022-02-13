@@ -90,6 +90,7 @@
                         <td><?= $data['keterangan'] ?></td>
                         <td>Rp<?php echo number_format($data['harga'],2,",",".")?></td>
                         <td>
+                        <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
                             <div class='btn-group'>
                             <a
                                 href='<?= site_url("Mutasikeluar/ubah/". $data['id_barangkeluar']) ?>'
@@ -99,6 +100,7 @@
                                 href='<?= site_url("Mutasikeluar/hapus/". $data['id_barangkeluar'] ."/". $data['id_barang']) ?>'
                                 onclick="return confirm('Ingin menghapus data ini?')">Batal</a>
                             </div>
+                        <?php endif ?>
                         </td>
                     </tr>
                 <?php } ?>

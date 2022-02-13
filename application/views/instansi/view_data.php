@@ -4,8 +4,10 @@
                    <!-- Page Heading -->
                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Instansi</h1>
+                        <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
                         <a href="<?php echo base_url('instansi/tambah');?>" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Tambah Instansi</a>
+                        class="fas fa-download fa-sm text-white-50"></i>Tambah Instansi</a>
+                        <?php endif ?>
                     </div>
 
  <!-- DataTales Example -->
@@ -33,7 +35,9 @@
                         <td><?= $no++ ?></td>
                         <td><?= $row->nama_instansi ?></td>
                         <td>
+                        <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
                             <div class='btn-group'>
+                                
                                 <a
                                     href="<?= site_url('instansi/ubah/'.$row->id_instansi) ?>"
                                     class="btn btn-warning">&nbsp; Edit &nbsp;</a> &nbsp;
@@ -42,6 +46,7 @@
 						            class='btn btn-danger'
                                     onclick="return confirm('Ingin menghapus data ini?')">Hapus</a>
                             </div>
+                        <?php endif ?>
                         </td>
                     </tr>
                 <?php } ?>

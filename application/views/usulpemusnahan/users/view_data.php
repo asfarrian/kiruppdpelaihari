@@ -43,7 +43,7 @@
                         <td>
                             <div class='btn-group'>
                             <a
-                                href='<?= site_url("users/ubah/". $data['id_login']) ?>'
+                                href='<?= site_url("users/ubah/". $data['id_barangkeluar']) ?>'
                                 class='btn btn-warning'>Ubah</a>&nbsp;
                             <a
                                 class='btn btn-danger'

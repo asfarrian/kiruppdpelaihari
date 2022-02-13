@@ -2,7 +2,7 @@
            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; KIR UPPD PELAIHARI - Achmad Sahrul Asfarianoor 2021</span>
+                        <span>Copyright &copy; SIB-UPPD PELAIHARI - Achmad Sahrul Asfarianoor 2022</span>
                     </div>
                 </div>
             </footer>

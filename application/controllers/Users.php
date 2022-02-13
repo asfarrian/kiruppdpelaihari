@@ -32,12 +32,13 @@
 
 		public function ubah($id){
 			if(isset($_POST['ubah'])){
-				$this->ruangan_model->update_data($id);
-				redirect('ruangan');
+				$this->users_model->update_data($id);
+				redirect('users');
 			}else{
-				$data['ruangan'] = $this->ruangan_model->get_data_byid($id);
+				$data['users'] = $this->users_model->get_data_byid($id);
+				$data['levelpengguna'] = ["Admin", "User"];
 
-				$this->template('ruangan/update_data', $data);
+				$this->template('users/update_data', $data);
 			}
 		}
 

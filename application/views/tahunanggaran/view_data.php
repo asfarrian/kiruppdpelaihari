@@ -26,19 +26,27 @@
                  <tbody>
                  <?php
 					$no = 1;
-					foreach($tahunanggaran as $row){
-					echo "<tr>
-                        <td>$no</td>
-                        <td>$row->nama_tahun</td>
-                        <td><div class='btn-group'>
-                        <a href=".base_url('tahunanggaran/ubah/'.$row->id_tahun)." class='btn btn-warning'>&nbsp; Edit &nbsp;</a> &nbsp;
-                        <a href=".base_url('tahunanggaran/hapus/'.$row->id_tahun)." 
-						class='btn btn-danger' onclick='return confirm(\"Ingin menghapus data ini?\");'>Hapus</a>
+					foreach($tahunanggaran as $row) {
+                ?>
+                    <tr>
+                        <td><?= $no++ ?></td>
+                        <td><?= $row->nama_tahun ?></td>
+                        <td>
+                        <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
+                            <div class='btn-group'>
+                                
+                                <a
+                                    href="<?= site_url('tahunanggaran/ubah/'.$row->id_tahun) ?>"
+                                    class="btn btn-warning">&nbsp; Edit &nbsp;</a> &nbsp;
+                                <a
+                                    href="<?= site_url('tahunanggaran/ubah/'.$row->id_tahun) ?>"
+						            class='btn btn-danger'
+                                    onclick="return confirm('Ingin menghapus data ini?')">Hapus</a>
+                            </div>
+                        <?php endif ?>
                         </td>
-                        </tr>";
-                            $no++;
-						}
-						 ?>
+                    </tr>
+                <?php } ?>
                  </tbody>
              </table>
          </div>

@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>SIB UPPD PELAIHARI</title>
+    <link href="<? base_url('box.ico');?>" rel='shortcut icon'>
 
     <!-- Custom fonts for this template -->
     <link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
@@ -151,11 +152,13 @@
             </li>
 
             <!-- Nav Item - Akun -->
+            <?php if($this->session->userdata('level_pengguna') == 'admin'): ?>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?php echo base_url('users');?>">
                     <i class="fas fa-users"></i>
                     <span>Users</span></a>
             </li>
+            <?php endif ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
